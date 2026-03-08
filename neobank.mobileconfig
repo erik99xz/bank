@@ -18,29 +18,29 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.8C2E80BA-AF51-46AE-B013-F42D0626BEF3</string>
+			<string>com.apple.webClip.managed.02AE5204-AEBF-4205-B4D2-CF34D1BAA911</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>8C2E80BA-AF51-46AE-B013-F42D0626BEF3</string>
+			<string>02AE5204-AEBF-4205-B4D2-CF34D1BAA911</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
 			<true/>
 			<key>URL</key>
-			<string>https://neobankultimate.vercel.app</string>
+			<string>https://neobankvn.vercel.app/</string>
 		</dict>
 	</array>
 	<key>PayloadDisplayName</key>
 	<string>NeoBank Web App</string>
 	<key>PayloadIdentifier</key>
-	<string>com.neobank.webapp.10B43A40-EDCB-424E-8A45-714E35A6D2F7</string>
+	<string>com.neobank.webapp.296EA375-310A-4328-83D1-E8FD041DFD0E</string>
 	<key>PayloadRemovalDisallowed</key>
 	<false/>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>10B43A40-EDCB-424E-8A45-714E35A6D2F7</string>
+	<string>296EA375-310A-4328-83D1-E8FD041DFD0E</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>

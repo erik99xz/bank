@@ -2,7 +2,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 
 // Configuration
-const url = 'https://neobankultimate.vercel.app';
+const url = 'https://neobankvn.vercel.app/';
 const label = 'NeoBank';
 const imagePath = './logo.png'; // Make sure the user saves their logo here
 const outputPath = './neobank.mobileconfig';
