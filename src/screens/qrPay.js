@@ -75,9 +75,11 @@ export function renderQrPay(container) {
   function renderScanMode() {
     return `
       <!-- Simulated Camera Background -->
-      <div class="absolute inset-0 z-0 top-0 pb-16">
+      <div class="absolute inset-0 z-0 top-0 pb-16 bg-slate-900">
         <div class="w-full h-full bg-slate-800 flex items-center justify-center overflow-hidden">
-          <img alt="Camera View" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmIpmTtjf2X1DAgAVRkFei4HIWbyXMc4jLa56_aepiowOXzYh2CLMbcE1Nu0_G0ZKL_l8kBjMkrHOTqEwU_qaOSP_ET2VEA8p2dFGmzUkmhDSyss-qXlHwlt4hHENa0gSWoUHXZ65pJU4mVzExnqZK-0yuYro3VWmnEqOFBPwVugLhlATBp_LmWNjn9eAOMSPBzHYz9TvilLeN1bJKTA6gryFkcZCOkvKXcZfz-pbJDzoNPXQ9viwN0awBJuwqvehUVZ-elhz5Y8Fm"/>
+          <video id="qr-video" class="w-full h-full object-cover" autoplay playsinline muted></video>
+          <canvas id="qr-canvas" style="display:none;"></canvas>
+          <img id="qr-fallback-img" alt="Camera View" class="w-full h-full object-cover opacity-60 hidden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmIpmTtjf2X1DAgAVRkFei4HIWbyXMc4jLa56_aepiowOXzYh2CLMbcE1Nu0_G0ZKL_l8kBjMkrHOTqEwU_qaOSP_ET2VEA8p2dFGmzUkmhDSyss-qXlHwlt4hHENa0gSWoUHXZ65pJU4mVzExnqZK-0yuYro3VWmnEqOFBPwVugLhlATBp_LmWNjn9eAOMSPBzHYz9TvilLeN1bJKTA6gryFkcZCOkvKXcZfz-pbJDzoNPXQ9viwN0awBJuwqvehUVZ-elhz5Y8Fm"/>
         </div>
       </div>
       <!-- Scanner Overlay -->
@@ -166,14 +168,22 @@ export function renderQrPay(container) {
   }
 
   function attachEvents() {
-    container.querySelector('#btn-back').addEventListener('click', () => navigate('dashboard'));
+    container.querySelector('#btn-back').addEventListener('click', () => {
+      stopCamera();
+      navigate('dashboard');
+    });
 
     container.querySelectorAll('.login-tab').forEach(tab => {
       tab.addEventListener('click', () => {
+        stopCamera();
         mode = tab.dataset.mode;
         render();
       });
     });
+
+    if (mode === 'scan') {
+      startCamera();
+    }
 
     // Open scanner overlay
     const btnScanner = container.querySelector('#btn-open-scanner');
@@ -258,6 +268,64 @@ export function renderQrPay(container) {
     };
     reader.readAsDataURL(file);
     e.target.value = '';
+  }
+
+  let stream = null;
+  let requestAnimId = null;
+
+  async function startCamera() {
+    const video = container.querySelector('#qr-video');
+    const fallbackImg = container.querySelector('#qr-fallback-img');
+    if (!video) return;
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      video.srcObject = stream;
+      video.setAttribute("playsinline", true);
+      video.play();
+      requestAnimId = requestAnimationFrame(tickCamera);
+    } catch (err) {
+      console.warn("Camera access denied or unavailable", err);
+      // Fallback
+      if (fallbackImg) fallbackImg.classList.remove('hidden');
+      if (video) video.classList.add('hidden');
+    }
+  }
+
+  function stopCamera() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
+    if (requestAnimId) {
+      cancelAnimationFrame(requestAnimId);
+      requestAnimId = null;
+    }
+  }
+
+  function tickCamera() {
+    const video = container.querySelector('#qr-video');
+    const canvas = container.querySelector('#qr-canvas');
+    if (!video || !canvas || !window.jsQR || video.readyState !== video.HAVE_ENOUGH_DATA) {
+      if (stream) requestAnimId = requestAnimationFrame(tickCamera);
+      return;
+    }
+
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = window.jsQR(imageData.data, imageData.width, imageData.height, {
+      inversionAttempts: "dontInvert"
+    });
+
+    if (code) {
+      stopCamera();
+      handleVietQR(code.data);
+    } else {
+      requestAnimId = requestAnimationFrame(tickCamera);
+    }
   }
 
   function parseVietQR(qrString) {
@@ -497,6 +565,18 @@ export function renderQrPay(container) {
       }
     });
   }
+
+  // Observe DOM removal to stop camera
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const removedNode of mutation.removedNodes) {
+        if (removedNode === container || removedNode.contains(container)) {
+          stopCamera();
+        }
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 
   render();
 }

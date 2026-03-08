@@ -139,11 +139,13 @@ body {
 #app {
   position: relative;
   width: 100%;
-  max-width: 430px;
+  max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
   background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Screen container ──────────────────────────────── */
@@ -167,7 +169,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;
+  max-width: 100%;
   height: 52px;
   display: flex;
   align-items: center;
@@ -190,7 +192,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;
+  max-width: 100%;
   height: var(--nav-height);
   background: var(--bg-nav);
   backdrop-filter: blur(20px);
@@ -561,6 +563,7 @@ body {
   outline: none;
   transition: var(--transition);
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-input::placeholder {
@@ -657,7 +660,7 @@ body {
 
 .modal-content {
   width: 100%;
-  max-width: 430px;
+  max-width: 100%;
   background: var(--bg-secondary);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   padding: 24px 20px calc(24px + var(--bottom-safe));
@@ -2084,8 +2087,10 @@ body {
 .pin-input::-webkit-outer-spin-button,
 .pin-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .pin-input {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
