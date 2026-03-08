@@ -8,6 +8,7 @@ import { navigate } from '../components/router.js';
 import { showModal, closeModal } from '../components/modal.js';
 import { showToast } from '../components/toast.js';
 import { skeletonRows } from '../components/skeleton.js';
+import { captureAndShareReceipt } from '../utils/receipt.js';
 
 export function renderHistory(container) {
   let filter = 'all';
@@ -164,6 +165,7 @@ export function renderHistory(container) {
     const refCodeDisplay = tx.ref || String(Math.floor(Math.random()*1000000)).padStart(6, '0');
     
     detailScreen.innerHTML = `
+<div id="tx-capture-area" class="flex flex-col flex-1 bg-background-light dark:bg-background-dark">
 <!-- Header / Top App Bar -->
 <header class="notch-safe sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between p-4">
@@ -171,7 +173,7 @@ export function renderHistory(container) {
 <span class="material-symbols-outlined text-2xl">arrow_back</span>
 </button>
 <h1 class="text-lg font-bold leading-tight tracking-tight">Chi tiết giao dịch</h1>
-<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<button id="btn-share-tx-top" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <span class="material-symbols-outlined text-2xl">share</span>
 </button>
 </div>
@@ -259,10 +261,11 @@ ${tx.balanceAfter ? `
 </p>
 </div>
 </main>
+</div>
 <!-- Footer Actions -->
 <footer class="bottom-safe fixed bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800">
 <div class="flex gap-3 max-w-lg mx-auto">
-<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
+<button id="btn-save-receipt" class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
 <span class="material-symbols-outlined">receipt_long</span>
     Lưu biên lai
 </button>
@@ -279,6 +282,11 @@ ${tx.balanceAfter ? `
       detailScreen.style.display = 'none';
       detailScreen.remove(); // Cleanup to avoid duplicate listeners on recreate
     });
+
+    // Receipt sharing
+    const shareHandler = () => captureAndShareReceipt('tx-capture-area', `NeoBank-Receipt-${txIdDisplay}.png`);
+    detailScreen.querySelector('#btn-share-tx-top')?.addEventListener('click', shareHandler);
+    detailScreen.querySelector('#btn-save-receipt')?.addEventListener('click', shareHandler);
     
     detailScreen.style.display = 'flex';
   }

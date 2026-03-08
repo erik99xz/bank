@@ -6,6 +6,7 @@ import { api } from '../backend/api.js';
 import { navigate } from '../components/router.js';
 import { showToast } from '../components/toast.js';
 import { skeletonRows } from '../components/skeleton.js';
+import { captureAndShareReceipt } from '../utils/receipt.js';
 
 export function renderNotifications(container) {
   async function load() {
@@ -177,6 +178,7 @@ export function renderNotifications(container) {
     const timeStr = formatTimeLong(notif.createdAt);
 
     detailOverlay.innerHTML = `
+<div id="notif-capture-area" class="flex flex-col flex-1 bg-background-light dark:bg-background-dark">
 <!-- Header / Top App Bar -->
 <header class="notch-safe sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between p-4">
@@ -184,7 +186,7 @@ export function renderNotifications(container) {
 <span class="material-symbols-outlined text-2xl">arrow_back</span>
 </button>
 <h1 class="text-lg font-bold leading-tight tracking-tight">Chi tiết giao dịch</h1>
-<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<button id="btn-share-notif-top" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <span class="material-symbols-outlined text-2xl">share</span>
 </button>
 </div>
@@ -273,10 +275,11 @@ export function renderNotifications(container) {
             </p>
 </div>
 </main>
+</div>
 <!-- Footer Actions -->
 <footer class="bottom-safe fixed bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800">
 <div class="flex gap-3 max-w-lg mx-auto">
-<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
+<button id="btn-save-notif-receipt" class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
 <span class="material-symbols-outlined">receipt_long</span>
                 Lưu biên lai
             </button>
@@ -294,6 +297,11 @@ export function renderNotifications(container) {
       detailOverlay.classList.add('animate-slide-down');
       setTimeout(() => detailOverlay.remove(), 300);
     });
+
+    // Receipt sharing
+    const shareHandler = () => captureAndShareReceipt('notif-capture-area', `NeoBank-Receipt-${Date.now()}.png`);
+    detailOverlay.querySelector('#btn-share-notif-top')?.addEventListener('click', shareHandler);
+    detailOverlay.querySelector('#btn-save-notif-receipt')?.addEventListener('click', shareHandler);
   }
 
   load();

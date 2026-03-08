@@ -7,6 +7,7 @@ import { api } from '../backend/api.js';
 import { DB, formatVND } from '../backend/db.js';
 import { navigate } from '../components/router.js';
 import { showToast } from '../components/toast.js';
+import { captureAndShareReceipt } from '../utils/receipt.js';
 
 export function renderTransfer(container) {
   let selectedBank = 'MB';
@@ -247,81 +248,84 @@ export function renderTransfer(container) {
   </div>
 </div>
 
-<!-- Success Bill Screen -->
 <div id="bill-screen" class="fixed inset-0 z-[70] bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col overflow-y-auto" style="display:none">
   <div class="relative flex screen w-full max-w-md mx-auto overflow-x-hidden pb-10">
-    <!-- Header / Notch Space -->
-    <div class="safe-top bg-background-dark h-8"></div>
-    <!-- Top Navigation -->
-    <div class="flex items-center justify-between p-4 bg-background-dark">
-      <button id="btn-close-bill-top" class="flex items-center justify-center size-10 rounded-full hover:bg-white/10 transition-colors">
-        <span class="material-symbols-outlined text-slate-100">close</span>
-      </button>
-      <h2 class="text-slate-100 text-base font-semibold">Chi tiết giao dịch</h2>
-      <button class="flex items-center justify-center size-10 rounded-full hover:bg-white/10 transition-colors">
-        <span class="material-symbols-outlined text-slate-100">share</span>
-      </button>
-    </div>
-    <!-- Success Animation/Icon Area -->
-    <div class="flex flex-col items-center pt-8 pb-6 px-4 bg-background-dark">
-      <div class="relative flex items-center justify-center mb-4">
-        <div class="absolute size-20 bg-[#22c55e]/20 rounded-full"></div>
-        <div class="size-16 bg-[#22c55e] rounded-full flex items-center justify-center shadow-lg shadow-[#22c55e]/20">
-          <span class="material-symbols-outlined text-white text-4xl font-bold">check</span>
-        </div>
+    <div id="capture-area" class="flex flex-col flex-1 bg-background-dark">
+      <!-- Header / Notch Space -->
+      <div class="safe-top bg-background-dark h-8"></div>
+      <!-- Top Navigation (inside capture area but will be handled) -->
+      <div class="flex items-center justify-between p-4 bg-background-dark">
+        <button id="btn-close-bill-top" class="flex items-center justify-center size-10 rounded-full hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-slate-100">close</span>
+        </button>
+        <h2 class="text-slate-100 text-base font-semibold">Chi tiết giao dịch</h2>
+        <button id="btn-share-bill-top" class="flex items-center justify-center size-10 rounded-full hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-slate-100">share</span>
+        </button>
       </div>
-      <p class="text-[#22c55e] font-bold text-lg tracking-wide uppercase">Chuyển thành công</p>
-      <h1 class="text-slate-100 text-4xl font-bold mt-2" id="bill-amount-v2"></h1>
-    </div>
-    <!-- Transaction Details Card -->
-    <div class="px-4 flex-1 bg-background-dark pt-4">
-      <div class="bg-[#182d34] border border-[#315a68] rounded-xl overflow-hidden mb-6">
-        <div class="p-4 space-y-4">
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Người gửi</span>
-            <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-sender-name"></span>
+      <!-- Success Animation/Icon Area -->
+      <div class="flex flex-col items-center pt-8 pb-6 px-4 bg-background-dark">
+        <div class="relative flex items-center justify-center mb-4">
+          <div class="absolute size-20 bg-[#22c55e]/20 rounded-full"></div>
+          <div class="size-16 bg-[#22c55e] rounded-full flex items-center justify-center shadow-lg shadow-[#22c55e]/20">
+            <span class="material-symbols-outlined text-white text-4xl font-bold">check</span>
           </div>
-          <div class="h-px bg-[#315a68]/50 w-full"></div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Người thụ hưởng</span>
-            <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-recipient-name-v2"></span>
-          </div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Số tài khoản</span>
-            <span class="text-slate-100 text-sm font-medium text-right" id="bill-recipient-acc"></span>
-          </div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Ngân hàng thụ hưởng</span>
-            <div class="flex flex-col items-end gap-1">
-              <div class="flex items-center gap-2">
-                <div class="w-5 h-5 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0"><img id="bill-bank-logo" src="" class="w-full h-full object-contain p-0.5"></div>
-                <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-recipient-bank-v2"></span>
+        </div>
+        <p class="text-[#22c55e] font-bold text-lg tracking-wide uppercase">Chuyển thành công</p>
+        <h1 class="text-slate-100 text-4xl font-bold mt-2" id="bill-amount-v2"></h1>
+      </div>
+      <!-- Transaction Details Card -->
+      <div class="px-4 flex-1 bg-background-dark pt-4">
+        <div class="bg-[#182d34] border border-[#315a68] rounded-xl overflow-hidden mb-6">
+          <div class="p-4 space-y-4">
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Người gửi</span>
+              <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-sender-name"></span>
+            </div>
+            <div class="h-px bg-[#315a68]/50 w-full"></div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Người thụ hưởng</span>
+              <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-recipient-name-v2"></span>
+            </div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Số tài khoản</span>
+              <span class="text-slate-100 text-sm font-medium text-right" id="bill-recipient-acc"></span>
+            </div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Ngân hàng thụ hưởng</span>
+              <div class="flex flex-col items-end gap-1">
+                <div class="flex items-center gap-2">
+                  <div class="w-5 h-5 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0"><img id="bill-bank-logo" src="" class="w-full h-full object-contain p-0.5"></div>
+                  <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-recipient-bank-v2"></span>
+                </div>
+                <span class="text-[10px] text-slate-400 text-right" id="bill-recipient-bank-full"></span>
               </div>
-              <span class="text-[10px] text-slate-400 text-right" id="bill-recipient-bank-full"></span>
+            </div>
+            <div class="h-px bg-[#315a68]/50 w-full"></div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Nội dung</span>
+              <span class="text-slate-100 text-sm font-medium text-right italic" id="bill-note-v2"></span>
+            </div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Ngày, giờ</span>
+              <span class="text-slate-100 text-sm font-medium text-right" id="bill-time-v2"></span>
+            </div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Mã giao dịch</span>
+              <span class="text-slate-100 text-sm font-medium text-right" id="bill-tx-code-v2"></span>
+            </div>
+            <div class="flex justify-between items-start gap-4">
+              <span class="text-slate-400 text-sm shrink-0">Số tham chiếu</span>
+              <span class="text-slate-100 text-sm font-medium text-right" id="bill-ref-code-v2"></span>
             </div>
           </div>
-          <div class="h-px bg-[#315a68]/50 w-full"></div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Nội dung</span>
-            <span class="text-slate-100 text-sm font-medium text-right italic" id="bill-note-v2"></span>
-          </div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Ngày, giờ</span>
-            <span class="text-slate-100 text-sm font-medium text-right" id="bill-time-v2"></span>
-          </div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Mã giao dịch</span>
-            <span class="text-slate-100 text-sm font-medium text-right" id="bill-tx-code-v2"></span>
-          </div>
-          <div class="flex justify-between items-start gap-4">
-            <span class="text-slate-400 text-sm shrink-0">Số tham chiếu</span>
-            <span class="text-slate-100 text-sm font-medium text-right" id="bill-ref-code-v2"></span>
-          </div>
         </div>
       </div>
-      <!-- Quick Action Icons -->
+    </div>
+    <!-- Quick Action Icons -->
+    <div class="px-4 bg-background-dark">
       <div class="grid grid-cols-3 gap-3 mb-8">
-        <button class="flex flex-col items-center justify-center p-3 rounded-xl bg-[#182d34] border border-[#315a68] hover:bg-primary/10 transition-colors group">
+        <button id="btn-share-bill" class="flex flex-col items-center justify-center p-3 rounded-xl bg-[#182d34] border border-[#315a68] hover:bg-primary/10 transition-colors group">
           <span class="material-symbols-outlined text-slate-100 mb-2 group-hover:text-primary">share</span>
           <span class="text-[11px] font-medium text-slate-300 text-center">Chia sẻ</span>
         </button>
@@ -436,6 +440,12 @@ export function renderTransfer(container) {
 
     container.querySelector('#btn-close-bill-top')?.addEventListener('click', () => navigate('dashboard', container._transferData));
     container.querySelector('#btn-done-bill-v2')?.addEventListener('click', () => navigate('dashboard', container._transferData));
+    
+    // Receipt sharing
+    const shareHandler = () => captureAndShareReceipt('capture-area', `NeoBank-Receipt-${Date.now()}.png`);
+    container.querySelector('#btn-share-bill-top')?.addEventListener('click', shareHandler);
+    container.querySelector('#btn-share-bill')?.addEventListener('click', shareHandler);
+
     container.querySelector('#btn-new-transfer-v2')?.addEventListener('click', () => {
       container.querySelector('#bill-screen').style.display = 'none';
       container.querySelector('#inp-account').value = '';
