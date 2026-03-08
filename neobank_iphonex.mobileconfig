@@ -2229,17 +2229,17 @@ tIF0gnnJKaqb+nnOFFm9RaPB1n2ImMW88qD55ePj4/8DxusYY6oj6uQAAAAASUVORK5CYII=
 			<key>IsRemovable</key>
 			<true/>
 			<key>Label</key>
-			<string>NeoBank Premium</string>
+			<string>NeoBank</string>
 			<key>PayloadDescription</key>
 			<string>Configures Web Clip for iPhone X</string>
 			<key>PayloadDisplayName</key>
 			<string>Web Clip (NeoBank)</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.0124D97F-2E8F-43E1-AF3F-14E5033A1971</string>
+			<string>com.apple.webClip.managed.89F16B3F-A2D5-47A1-910A-0A6D6B407173</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>0124D97F-2E8F-43E1-AF3F-14E5033A1971</string>
+			<string>89F16B3F-A2D5-47A1-910A-0A6D6B407173</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
@@ -2263,7 +2263,7 @@ tIF0gnnJKaqb+nnOFFm9RaPB1n2ImMW88qD55ePj4/8DxusYY6oj6uQAAAAASUVORK5CYII=
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>BF770238-9A12-4BF3-AA09-0B9DBA474093</string>
+	<string>82E91356-389A-48FB-92BA-9F8366F45D7B</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>

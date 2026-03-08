@@ -92,7 +92,7 @@ export function renderDashboard(container, state = null) {
     </div>
   </header>
 
-  <main class="flex-1 px-6 pb-32">
+  <main class="flex-1 px-5 pb-28">
     <!-- Balance Card -->
     <section class="mt-6">
       <div class="glass-card rounded-xl p-6 relative overflow-hidden">
@@ -124,8 +124,7 @@ export function renderDashboard(container, state = null) {
       </div>
     </section>
 
-    <!-- Quick Actions -->
-    <section class="mt-8 grid grid-cols-4 gap-4 text-center">
+    <section class="mt-5 grid grid-cols-4 gap-3 text-center">
       <div class="flex flex-col items-center gap-2 cursor-pointer" id="qa-transfer">
         <div class="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center border border-slate-200 dark:border-slate-700 active:scale-95 transition-transform">
           <span class="material-symbols-outlined text-primary">swap_horiz</span>
@@ -153,7 +152,7 @@ export function renderDashboard(container, state = null) {
     </section>
 
     <!-- Spending Summary -->
-    <section class="mt-10">
+    <section class="mt-6">
       <div class="flex justify-between items-center mb-4 cursor-pointer">
         <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Thống kê chi tiêu</h3>
         <span class="material-symbols-outlined text-slate-400">expand_more</span>

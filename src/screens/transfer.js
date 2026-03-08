@@ -100,21 +100,21 @@ export function renderTransfer(container) {
     container.innerHTML = `
 <div class="screen font-display text-slate-100 flex flex-col">
   <!-- Header -->
-  <header class="flex items-center justify-between p-4 sticky top-0 bg-background-dark/80 backdrop-blur-md z-20 notch-safe-top">
-    <button id="btn-back" class="p-2 rounded-full hover:bg-slate-800 transition-colors">
+  <header class="flex items-center justify-between p-3 sticky top-0 bg-background-dark/80 backdrop-blur-md z-20 notch-safe-top">
+    <button id="btn-back" class="p-1 rounded-full hover:bg-slate-800 transition-colors">
       <span class="material-symbols-outlined block">arrow_back</span>
     </button>
-    <h1 class="text-lg font-bold">Chuyển tiền</h1>
-    <button id="btn-qr" class="p-2 rounded-full hover:bg-slate-800 transition-colors">
+    <h1 class="text-base font-bold">Chuyển tiền</h1>
+    <button id="btn-qr" class="p-1 rounded-full hover:bg-slate-800 transition-colors">
       <span class="material-symbols-outlined block">qr_code_scanner</span>
     </button>
   </header>
 
-  <main class="flex-1 px-4 pb-40">
+  <main class="flex-1 px-4 pb-32">
 
 
     <!-- Transfer Form -->
-    <div class="mt-6 space-y-4">
+    <div class="mt-2 space-y-3">
       <!-- Chọn ngân hàng -->
       <div class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/30">
         <label class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 mb-1">Ngân hàng thụ hưởng</label>
@@ -203,33 +203,33 @@ export function renderTransfer(container) {
 <!-- Smart OTP Screen -->
 <div id="otp-screen" class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col overflow-y-auto" style="display:none">
   <div class="relative flex screen w-full flex-col max-w-md mx-auto overflow-x-hidden">
-    <header class="pt-12 pb-6 px-4">
-      <div class="flex items-center justify-between mb-6">
-        <button id="btn-cancel-otp" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
-          <span class="material-symbols-outlined">arrow_back</span>
+    <header class="pt-6 pb-2 px-4 notch-safe-top">
+      <div class="flex items-center justify-between mb-4">
+        <button id="btn-cancel-otp" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
         </button>
-        <h1 class="text-lg font-bold">Xác nhận giao dịch</h1>
-        <div class="w-10"></div>
+        <h1 class="text-base font-bold">Xác nhận giao dịch</h1>
+        <div class="w-8"></div>
       </div>
-      <div class="flex flex-col items-center text-center space-y-2">
-        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2">
-          <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">shield_lock</span>
+      <div class="flex flex-col items-center text-center space-y-1">
+        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-1">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">shield_lock</span>
         </div>
-        <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Nhập mã PIN Smart OTP để xác nhận</p>
+        <p class="text-[12px] text-slate-500 dark:text-slate-400 font-medium">Nhập mã PIN Smart OTP để xác nhận</p>
       </div>
     </header>
     <main class="flex-1 px-4 space-y-6">
-      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-xl p-5 shadow-sm">
-        <div class="space-y-4" id="otp-details"></div>
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-lg p-3 shadow-sm">
+        <div class="space-y-2 text-xs" id="otp-details"></div>
       </div>
-      <div class="py-4">
-        <div class="flex justify-between max-w-xs mx-auto gap-2" id="pin-inputs">
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+      <div class="py-2">
+        <div class="flex justify-between max-w-[280px] mx-auto gap-1" id="pin-inputs">
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-9 h-12 text-center text-xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
         </div>
         <div class="mt-8 flex flex-col items-center gap-2">
           <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
@@ -240,8 +240,8 @@ export function renderTransfer(container) {
         </div>
       </div>
     </main>
-    <footer class="p-6 space-y-4">
-      <button id="btn-do-transfer" class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">Xác nhận</button>
+    <footer class="p-4 space-y-2">
+      <button id="btn-do-transfer" class="w-full h-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">Xác nhận</button>
       <div class="flex justify-center"><a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Quên PIN?</a></div>
       <div class="h-4"></div>
     </footer>
@@ -435,6 +435,7 @@ export function renderTransfer(container) {
     container.querySelector('#btn-cancel-otp')?.addEventListener('click', () => {
       clearInterval(otpTimerInterval);
       container.querySelector('#otp-screen').style.display = 'none';
+      document.getElementById('bottom-nav')?.classList.remove('hidden');
     });
     container.querySelector('#btn-do-transfer')?.addEventListener('click', doTransfer);
 
@@ -448,6 +449,7 @@ export function renderTransfer(container) {
 
     container.querySelector('#btn-new-transfer-v2')?.addEventListener('click', () => {
       container.querySelector('#bill-screen').style.display = 'none';
+      document.getElementById('bottom-nav')?.classList.remove('hidden');
       container.querySelector('#inp-account').value = '';
       container.querySelector('#inp-amount').value = '';
       hideAccountName();
@@ -598,33 +600,34 @@ export function renderTransfer(container) {
     let noteToDisplay = removeVietnameseTones(note);
 
     container.querySelector('#otp-details').innerHTML = `
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-3">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Người nhận</span>
-        <span class="text-sm font-semibold uppercase">${accName}</span>
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Người nhận</span>
+        <span class="text-[11px] font-semibold uppercase">${accName}</span>
       </div>
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-3">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Ngân hàng</span>
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Ngân hàng</span>
         <div class="flex items-center gap-2">
-          <div class="w-5 h-5 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0"><img src="${bank.logo}" class="w-full h-full object-contain"></div>
-          <span class="text-sm font-semibold">${bank.name}</span>
+          <div class="w-4 h-4 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0"><img src="${bank.logo}" class="w-full h-full object-contain"></div>
+          <span class="text-[11px] font-semibold">${bank.name}</span>
         </div>
       </div>
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-3">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Số tài khoản</span>
-        <span class="text-sm font-semibold">${accNum}</span>
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Số tài khoản</span>
+        <span class="text-[11px] font-semibold">${accNum}</span>
       </div>
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-3">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Số tiền</span>
-        <span class="text-lg font-bold text-primary">${formatNumber(amount.toString())} VND</span>
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Số tiền</span>
+        <span class="text-base font-bold text-primary">${formatNumber(amount.toString())} VND</span>
       </div>
       <div class="flex justify-between items-start">
-        <span class="text-sm text-slate-500 dark:text-slate-400">Nội dung</span>
-        <span class="text-sm font-medium text-right max-w-[180px]">${noteToDisplay}</span>
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Nội dung</span>
+        <span class="text-[11px] font-medium text-right max-w-[150px] truncate">${noteToDisplay}</span>
       </div>
     `;
 
     container.querySelectorAll('.pin-input').forEach(i => i.value = '');
     container.querySelector('#otp-screen').style.display = 'flex';
+    document.getElementById('bottom-nav')?.classList.add('hidden');
     container.querySelector('.pin-input')?.focus();
 
     clearInterval(otpTimerInterval);
@@ -709,6 +712,7 @@ export function renderTransfer(container) {
       container.querySelector('#bill-tx-code-v2').textContent = txCode;
       container.querySelector('#bill-ref-code-v2').textContent = refCode;
       
+      document.getElementById('bottom-nav')?.classList.add('hidden');
       if (bill) bill.style.display = 'flex';
     } else {
       render();

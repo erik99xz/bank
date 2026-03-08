@@ -3,7 +3,7 @@ import crypto from 'crypto';
 
 // Configuration for iPhone X Optimized Profile
 const url = 'https://neobankvn.vercel.app/';
-const label = 'NeoBank Premium'; // Distinct label
+const label = 'NeoBank Premium (X)'; // Distinct premium label
 const imagePath = './logo.png';
 const outputPath = './neobank_iphonex.mobileconfig';
 
