@@ -53,30 +53,8 @@
     <button onclick="document.body.className='dark device-iphone-8-plus animate-fade-in'" class="text-left text-sm font-semibold hover:text-primary transition-colors">iPhone 8 Plus</button>
   </div>
 
-  <!-- Simulated Status Bar -->
-  <div id="status-bar" class="status-bar">
-    <div class="time" id="status-time">09:41</div>
-    <div class="icons">
-      <span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span>
-      <span class="material-symbols-outlined text-[14px]">wifi</span>
-      <span class="material-symbols-outlined text-[14px]">battery_very_low</span>
-    </div>
-  </div>
-
   <div id="app"></div>
   
-  <script>
-    // Update simulated time
-    function updateSimulatedTime() {
-      const now = new Date();
-      const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-      const timeEl = document.getElementById('status-time');
-      if (timeEl) timeEl.textContent = timeStr;
-    }
-    setInterval(updateSimulatedTime, 1000);
-    updateSimulatedTime();
-  </script>
-
   <script type="module" src="src/main.js"></script>
 </body>
 </html>

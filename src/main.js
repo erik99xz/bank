@@ -61,6 +61,36 @@ function init() {
     window.location.hash = isLoggedIn() ? '#dashboard' : '#login';
   }
   initRouter();
+  initMobileGestures();
+}
+
+function initMobileGestures() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  window.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Swipe Right (Back) - starts from left edge (within 50px)
+    if (diffX > 100 && Math.abs(diffY) < 50 && touchStartX < 50) {
+      window.history.back();
+    }
+  }, { passive: true });
+
+  // Prevent context menu (optional for more native feel)
+  window.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      // e.preventDefault(); 
+    }
+  });
 }
 
 // ── Boot ───────────────────────────────────────────────

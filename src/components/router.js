@@ -67,10 +67,8 @@ function updateNav(route) {
   });
   // Show/hide bottom nav
   const nav = document.getElementById('bottom-nav');
-  const statusBar = document.getElementById('status-bar');
   const hideNavRoutes = ['login', 'otp', 'forgot', 'admin', 'changePin', 'myQr'];
   if (nav) nav.classList.toggle('hidden', hideNavRoutes.includes(route));
-  if (statusBar) statusBar.classList.toggle('hidden', route === 'login');
 }
 
 export function initRouter() {
