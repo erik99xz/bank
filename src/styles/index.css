@@ -914,7 +914,6 @@ button:active, .btn:active, .card:active:not(.no-press), .nav-item:active, .nav-
 
 /* stagger children enhancement */
 .stagger > * {
-  opacity: 0;
   animation: slide-up 0.5s var(--transition-spring) forwards;
 }
 
