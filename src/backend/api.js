@@ -2,7 +2,7 @@
 // NeoBank — Fake REST API
 // ═══════════════════════════════════════════════════════
 
-import { DB, genId, getUserById, getAccountByUserId, formatVND } from './db.js';
+import { DB, genId, getUserById, getAccountByUserId, formatVND, saveDB } from './db.js';
 
 // Simulate network latency (500-1000ms)
 function delay() {
@@ -65,6 +65,9 @@ export async function api(endpoint, body = {}) {
     'admin/send-notification': handleAdminSendNotification,
     'admin/delete-user': handleAdminDeleteUser,
     'admin/add-user': handleAdminAddUser,
+
+    // Reset
+    'reset-balance': handleResetBalance,
   };
 
   const handler = routes[endpoint];
@@ -116,8 +119,9 @@ function handleRegister({ name, email, phone, password }) {
   const id = genId('u');
   const user = { id, name, email, phone, password, avatar: null, role: 'user', priority: false, biometricEnabled: false, language: 'vi', theme: 'dark', createdAt: new Date().toISOString() };
   DB.users.push(user);
-  DB.accounts.push({ id: genId('a'), userId: id, accountNumber: '9704 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), balance: 10000000, currency: 'VND', type: 'checking' });
+  DB.accounts.push({ id: genId('a'), userId: id, accountNumber: '9704 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), balance: 10000000, initialBalance: 10000000, currency: 'VND', type: 'checking' });
   DB.cards.push({ id: genId('c'), userId: id, cardNumber: '4970 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), expiry: '12/29', cvv: String(Math.floor(100 + Math.random() * 900)), cardHolder: name.toUpperCase(), type: 'visa', frozen: false, color: 'gradient-blue' });
+  saveDB();
   return { ok: true, message: 'Đăng ký thành công! Vui lòng đăng nhập.' };
 }
 
@@ -196,6 +200,7 @@ function handleUpdateProfile({ name, email, phone }) {
   if (name) user.name = name;
   if (email) user.email = email;
   if (phone) user.phone = phone;
+  saveDB();
   return { ok: true, user: sanitizeUser(user) };
 }
 
@@ -204,6 +209,7 @@ function handleChangePassword({ oldPassword, newPassword }) {
   const user = getUserById(currentUserId);
   if (user.password !== oldPassword) return { ok: false, error: 'Mật khẩu cũ không đúng' };
   user.password = newPassword;
+  saveDB();
   return { ok: true, message: 'Đổi mật khẩu thành công' };
 }
 
@@ -211,6 +217,7 @@ function handleToggleTheme() {
   requireAuth();
   const user = getUserById(currentUserId);
   user.theme = user.theme === 'dark' ? 'light' : 'dark';
+  saveDB();
   return { ok: true, theme: user.theme };
 }
 
@@ -226,7 +233,10 @@ function handleNotifications() {
 function handleMarkNotificationRead({ id }) {
   requireAuth();
   const n = DB.notifications.find(x => x.id === id);
-  if (n) n.read = true;
+  if (n) {
+    n.read = true;
+    saveDB();
+  }
   return { ok: true };
 }
 
@@ -258,6 +268,7 @@ function handleTransfer({ toAccount, amount, note, accName }) {
     DB.notifications.unshift({ id: genId('n'), userId: toAcc.userId, title: 'Nhận tiền', body: `Bạn nhận được ${formatVND(amount)} từ ${getUserById(currentUserId)?.name}`, read: false, createdAt: new Date().toISOString() });
   }
 
+  saveDB();
   return { ok: true, transaction: enrichTransaction(tx, currentUserId), newBalance: fromAcc.balance };
 }
 
@@ -292,6 +303,7 @@ function handleToggleCardFreeze({ cardId }) {
   const card = DB.cards.find(c => c.id === cardId && c.userId === currentUserId);
   if (!card) return { ok: false, error: 'Không tìm thấy thẻ' };
   card.frozen = !card.frozen;
+  saveDB();
   return { ok: true, frozen: card.frozen };
 }
 
@@ -311,6 +323,7 @@ function handleQrPay({ amount, note, toUserId }) {
 
   const tx = { id: genId('t'), fromUserId: currentUserId, toUserId: toAcc.userId, amount, type: 'qr_pay', note: note || 'QR Pay', status: 'completed', createdAt: new Date().toISOString() };
   DB.transactions.unshift(tx);
+  saveDB();
   return { ok: true, transaction: enrichTransaction(tx, currentUserId), newBalance: fromAcc.balance };
 }
 
@@ -369,6 +382,7 @@ function handleAdminUpdateBalance({ userId, newBalance }) {
   const acc = getAccountByUserId(userId);
   if (!acc) return { ok: false, error: 'Không tìm thấy tài khoản' };
   acc.balance = Number(newBalance);
+  saveDB();
   return { ok: true, balance: acc.balance };
 }
 
@@ -376,6 +390,7 @@ function handleAdminSendNotification({ userId, title, body }) {
   requireAdmin();
   const notif = { id: genId('n'), userId, title, body, read: false, createdAt: new Date().toISOString() };
   DB.notifications.unshift(notif);
+  saveDB();
   return { ok: true, notification: notif };
 }
 
@@ -386,6 +401,7 @@ function handleAdminDeleteUser({ userId }) {
   DB.users.splice(idx, 1);
   DB.accounts = DB.accounts.filter(a => a.userId !== userId);
   DB.cards = DB.cards.filter(c => c.userId !== userId);
+  saveDB();
   return { ok: true };
 }
 
@@ -395,9 +411,20 @@ function handleAdminAddUser({ name, email, phone, password, balance }) {
   const id = genId('u');
   const user = { id, name, email, phone, password: password || '123456', avatar: null, role: 'user', priority: false, biometricEnabled: false, language: 'vi', theme: 'dark', createdAt: new Date().toISOString() };
   DB.users.push(user);
-  DB.accounts.push({ id: genId('a'), userId: id, accountNumber: '9704 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), balance: Number(balance) || 10000000, currency: 'VND', type: 'checking' });
+  DB.accounts.push({ id: genId('a'), userId: id, accountNumber: '9704 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), balance: Number(balance) || 10000000, initialBalance: Number(balance) || 10000000, currency: 'VND', type: 'checking' });
   DB.cards.push({ id: genId('c'), userId: id, cardNumber: '4970 ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6) + ' ' + Math.random().toString().slice(2, 6), expiry: '12/29', cvv: String(Math.floor(100 + Math.random() * 900)), cardHolder: name.toUpperCase(), type: 'visa', frozen: false, color: 'gradient-blue' });
+  saveDB();
   return { ok: true, user: sanitizeUser(user) };
+}
+
+async function handleResetBalance() {
+  requireAuth();
+  const acc = getAccountByUserId(currentUserId);
+  if (!acc) return { ok: false, error: 'Không tìm thấy tài khoản' };
+  
+  acc.balance = acc.initialBalance || 10000000;
+  saveDB();
+  return { ok: true, newBalance: acc.balance };
 }
 
 // ── Utilities ──────────────────────────────────────────

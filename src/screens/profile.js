@@ -165,6 +165,12 @@ ${user.priority ? `
                     Đăng xuất
                 </button>
 </div>
+<div class="pt-4">
+<button id="menu-reset-balance" class="w-full flex items-center justify-center gap-2 p-4 bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 rounded-xl transition-colors font-bold border border-blue-500/20">
+<span class="material-symbols-outlined">restart_alt</span>
+                    Reset số dư
+                </button>
+</div>
 <div class="text-center pb-8">
 <p class="text-xs text-slate-500 dark:text-slate-600">NeoBank v1.0.0 (Build 2024)</p>
 </div>
@@ -210,6 +216,10 @@ ${user.priority ? `
       document.documentElement.setAttribute('data-theme', 'dark');
       showToast('Đã đăng xuất', 'info');
       navigate('login');
+    });
+
+    container.querySelector('#menu-reset-balance').addEventListener('click', () => {
+      handleResetBalance();
     });
   }
 
@@ -278,6 +288,28 @@ ${user.priority ? `
       const res = await api('change-password', { oldPassword, newPassword });
       closeModal(modal);
       showToast(res.ok ? res.message : res.error, res.ok ? 'success' : 'error');
+    });
+  }
+
+  async function handleResetBalance() {
+    const modal = showModal(`
+      <h3 class="modal-title">Xác nhận Reset Số dư</h3>
+      <p class="text-center mb-4">Bạn có chắc chắn muốn reset số dư tài khoản về 10,000,000 VND không?</p>
+      <button class="btn btn-primary btn-full" id="btn-confirm-reset">Xác nhận</button>
+      <button class="btn btn-ghost btn-full" id="btn-cancel-reset">Hủy</button>
+    `);
+
+    modal.querySelector('#btn-cancel-reset').addEventListener('click', () => closeModal(modal));
+    modal.querySelector('#btn-confirm-reset').addEventListener('click', async () => {
+      closeModal(modal);
+      const res = await api('reset-balance');
+      if (res.ok) {
+        profile.account.balance = res.newBalance;
+        showToast('Số dư đã được reset về 10,000,000 VND', 'success');
+        render(); // Re-render to update balance display if needed
+      } else {
+        showToast(res.error, 'error');
+      }
     });
   }
 

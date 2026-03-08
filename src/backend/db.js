@@ -6,10 +6,10 @@ export const DB = {
   users: [
     {
       id: 'u1',
-      name: 'Nguyễn Văn An',
-      email: 'demo@neobank.vn',
-      phone: '0901234567',
-      password: '123456',
+      name: 'Lưu Gia Bảo',
+      email: 'baoluo@neobank.vn',
+      phone: '0777440600',
+      password: '090910',
       avatar: null,
       role: 'user',
       priority: true,
@@ -20,10 +20,10 @@ export const DB = {
     },
     {
       id: 'u2',
-      name: 'Trần Thị Bình',
-      email: 'binh@neobank.vn',
-      phone: '0912345678',
-      password: '123456',
+      name: 'Nguyễn Hải Đăng',
+      email: 'dangnh@neobank.vn',
+      phone: '0964985241',
+      password: '110210',
       avatar: null,
       role: 'user',
       priority: false,
@@ -34,10 +34,10 @@ export const DB = {
     },
     {
       id: 'u3',
-      name: 'Lê Hoàng Minh',
-      email: 'minh@neobank.vn',
-      phone: '0923456789',
-      password: '123456',
+      name: 'Trần Đặng Anh Khoa',
+      email: 'khoatda@neobank.vn',
+      phone: '0932811785',
+      password: '010210',
       avatar: null,
       role: 'user',
       priority: false,
@@ -45,6 +45,20 @@ export const DB = {
       language: 'en',
       theme: 'dark',
       createdAt: '2025-03-10T14:00:00Z'
+    },
+    {
+      id: 'u4',
+      name: 'Nguyễn Thành Bảo Nhân',
+      email: 'nhanntb@neobank.vn',
+      phone: '0372263653',
+      password: '090210',
+      avatar: null,
+      role: 'user',
+      priority: false,
+      biometricEnabled: false,
+      language: 'vi',
+      theme: 'dark',
+      createdAt: '2025-03-15T09:00:00Z'
     },
     {
       id: 'admin',
@@ -63,41 +77,52 @@ export const DB = {
   ],
 
   accounts: [
-    { id: 'a1', userId: 'u1', accountNumber: '9704 0000 1234 5678', balance: 125000000, currency: 'VND', type: 'checking' },
-    { id: 'a2', userId: 'u2', accountNumber: '9704 0000 8765 4321', balance: 45200000, currency: 'VND', type: 'checking' },
-    { id: 'a3', userId: 'u3', accountNumber: '9704 0000 5555 6666', balance: 78500000, currency: 'VND', type: 'checking' },
-    { id: 'a4', userId: 'admin', accountNumber: '9704 0000 0000 0001', balance: 999999999, currency: 'VND', type: 'checking' }
+    { id: 'a1', userId: 'u1', accountNumber: '0777440600', balance: 36090910, initialBalance: 36090910, currency: 'VND', type: 'checking' },
+    { id: 'a2', userId: 'u2', accountNumber: '0964985241', balance: 11020210, initialBalance: 11020210, currency: 'VND', type: 'checking' },
+    { id: 'a3', userId: 'u3', accountNumber: '0932811785', balance: 10200210, initialBalance: 10200210, currency: 'VND', type: 'checking' },
+    { id: 'a4', userId: 'u4', accountNumber: '0372263653', balance: 10900201, initialBalance: 10900201, currency: 'VND', type: 'checking' },
+    { id: 'a_admin', userId: 'admin', accountNumber: '9704 0000 0000 0001', balance: 999999999, initialBalance: 999999999, currency: 'VND', type: 'checking' }
   ],
 
-  transactions: [
-    { id: 't1', fromUserId: 'u1', toUserId: 'u2', amount: 2500000, type: 'transfer', note: 'Trả tiền ăn trưa', status: 'completed', createdAt: '2026-03-07T18:30:00Z' },
-    { id: 't2', fromUserId: 'u2', toUserId: 'u1', amount: 1000000, type: 'transfer', note: 'Trả tiền cafe', status: 'completed', createdAt: '2026-03-07T14:15:00Z' },
-    { id: 't3', fromUserId: 'u1', toUserId: null, amount: 500000, type: 'topup', note: 'Nạp tiền điện thoại', status: 'completed', createdAt: '2026-03-06T10:00:00Z' },
-    { id: 't4', fromUserId: 'u1', toUserId: null, amount: 1200000, type: 'bill', note: 'Thanh toán tiền điện', status: 'completed', createdAt: '2026-03-05T09:00:00Z' },
-    { id: 't5', fromUserId: 'u1', toUserId: 'u3', amount: 3500000, type: 'transfer', note: 'Chuyển tiền thuê nhà', status: 'completed', createdAt: '2026-03-04T16:00:00Z' },
-    { id: 't6', fromUserId: 'u3', toUserId: 'u1', amount: 800000, type: 'qr_pay', note: 'QR thanh toán đồ uống', status: 'completed', createdAt: '2026-03-03T20:00:00Z' },
-    { id: 't7', fromUserId: 'u1', toUserId: null, amount: 250000, type: 'bill', note: 'Thanh toán internet', status: 'completed', createdAt: '2026-03-02T11:30:00Z' },
-    { id: 't8', fromUserId: 'u1', toUserId: null, amount: 150000, type: 'topup', note: 'Nạp ví MoMo', status: 'completed', createdAt: '2026-03-01T08:45:00Z' },
-    { id: 't9', fromUserId: 'u2', toUserId: 'u1', amount: 5000000, type: 'transfer', note: 'Trả tiền vé máy bay', status: 'completed', createdAt: '2026-02-28T13:00:00Z' },
-    { id: 't10', fromUserId: 'u1', toUserId: null, amount: 2000000, type: 'bill', note: 'Thanh toán bảo hiểm', status: 'completed', createdAt: '2026-02-27T15:00:00Z' }
-  ],
+  transactions: [],
 
   cards: [
-    { id: 'c1', userId: 'u1', cardNumber: '4970 4000 1234 5678', expiry: '12/28', cvv: '321', cardHolder: 'NGUYEN VAN AN', type: 'visa', frozen: false, color: 'gradient-blue' },
-    { id: 'c2', userId: 'u2', cardNumber: '5241 8100 8765 4321', expiry: '06/27', cvv: '456', cardHolder: 'TRAN THI BINH', type: 'mastercard', frozen: false, color: 'gradient-purple' },
-    { id: 'c3', userId: 'u3', cardNumber: '4970 4000 5555 6666', expiry: '09/29', cvv: '789', cardHolder: 'LE HOANG MINH', type: 'visa', frozen: true, color: 'gradient-green' }
+    { id: 'c1', userId: 'u1', cardNumber: '4970 4000 1234 5678', expiry: '12/28', cvv: '321', cardHolder: 'LUU GIA BAO', type: 'visa', frozen: false, color: 'gradient-blue' },
+    { id: 'c2', userId: 'u2', cardNumber: '5241 8100 8765 4321', expiry: '06/27', cvv: '456', cardHolder: 'NGUYEN HAI DANG', type: 'mastercard', frozen: false, color: 'gradient-purple' },
+    { id: 'c3', userId: 'u3', cardNumber: '4970 4000 5555 6666', expiry: '09/29', cvv: '789', cardHolder: 'TRAN DANG ANH KHOA', type: 'visa', frozen: false, color: 'gradient-green' },
+    { id: 'c4', userId: 'u4', cardNumber: '4970 4000 7777 8888', expiry: '10/30', cvv: '111', cardHolder: 'NGUYEN THANH BAO NHAN', type: 'visa', frozen: false, color: 'gradient-blue' }
   ],
 
-  notifications: [
-    { id: 'n1', userId: 'u1', title: 'Chuyển tiền thành công', body: 'Bạn đã chuyển 2,500,000₫ cho Trần Thị Bình', read: false, createdAt: '2026-03-07T18:30:00Z' },
-    { id: 'n2', userId: 'u1', title: 'Nhận tiền', body: 'Bạn nhận được 1,000,000₫ từ Trần Thị Bình', read: false, createdAt: '2026-03-07T14:15:00Z' },
-    { id: 'n3', userId: 'u1', title: 'Thanh toán hóa đơn', body: 'Thanh toán tiền điện 1,200,000₫ thành công', read: true, createdAt: '2026-03-05T09:00:00Z' },
-    { id: 'n4', userId: 'u1', title: 'NeoBank Priority', body: 'Chúc mừng! Bạn đã được nâng cấp tài khoản Priority', read: true, createdAt: '2026-03-01T00:00:00Z' }
-  ],
+  notifications: [],
 
   otpStore: {},
   tokenStore: {}
 };
+
+// Persistence Logic
+export function saveDB() {
+  localStorage.setItem('neo_db_v2', JSON.stringify(DB));
+}
+
+export function initDB() {
+  const saved = localStorage.getItem('neo_db_v2');
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      // Merge or replace contents
+      if (data.users) DB.users = data.users;
+      if (data.accounts) DB.accounts = data.accounts;
+      if (data.transactions) DB.transactions = data.transactions;
+      if (data.notifications) DB.notifications = data.notifications;
+      if (data.cards) DB.cards = data.cards;
+    } catch (e) {
+      console.error('Failed to load DB from localStorage', e);
+    }
+  }
+}
+
+// Initialize on load
+initDB();
 
 // Helper: generate unique ID
 export function genId(prefix = 'x') {
