@@ -68,7 +68,7 @@ function updateNav(route) {
   // Show/hide bottom nav
   const nav = document.getElementById('bottom-nav');
   const statusBar = document.getElementById('status-bar');
-  const hideNavRoutes = ['login', 'otp', 'forgot', 'admin'];
+  const hideNavRoutes = ['login', 'otp', 'forgot', 'admin', 'changePin'];
   if (nav) nav.classList.toggle('hidden', hideNavRoutes.includes(route));
   if (statusBar) statusBar.classList.toggle('hidden', route === 'login');
 }

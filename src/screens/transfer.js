@@ -223,12 +223,12 @@ export function renderTransfer(container) {
       </div>
       <div class="py-4">
         <div class="flex justify-between max-w-xs mx-auto gap-2" id="pin-inputs">
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
-          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
+          <input class="pin-input w-12 h-14 text-center text-2xl font-bold bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all duration-200" maxlength="1" type="password" inputmode="numeric" pattern="[0-9]*" />
         </div>
         <div class="mt-8 flex flex-col items-center gap-2">
           <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">

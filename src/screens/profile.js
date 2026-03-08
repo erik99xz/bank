@@ -230,11 +230,11 @@ ${user.priority ? `
       <h3 class="modal-title">Đổi mật khẩu</h3>
       <div class="form-group">
         <label class="form-label">Mật khẩu cũ</label>
-        <input type="password" class="form-input" id="old-pass" placeholder="••••••">
+        <input type="password" inputmode="numeric" pattern="[0-9]*" class="form-input" id="old-pass" placeholder="••••••">
       </div>
       <div class="form-group">
         <label class="form-label">Mật khẩu mới</label>
-        <input type="password" class="form-input" id="new-pass" placeholder="Ít nhất 6 ký tự">
+        <input type="password" inputmode="numeric" pattern="[0-9]*" class="form-input" id="new-pass" placeholder="Ít nhất 6 ký tự">
       </div>
       <div id="pass-error" class="form-error hidden"></div>
       <button class="btn btn-primary btn-full" id="btn-save-pass">Đổi mật khẩu</button>

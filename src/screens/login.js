@@ -60,7 +60,7 @@ export function renderLogin(container) {
           <div class="absolute left-4 flex items-center justify-center text-slate-500 group-focus-within:text-primary transition-colors">
             <span class="material-symbols-outlined">lock</span>
           </div>
-          <input id="login-password" class="h-14 w-full rounded-xl border border-white/10 bg-white/5 pl-12 pr-12 text-slate-100 placeholder-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" maxlength="20" placeholder="••••••" type="password"/>
+          <input id="login-password" class="h-14 w-full rounded-xl border border-white/10 bg-white/5 pl-12 pr-12 text-slate-100 placeholder-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" maxlength="20" placeholder="••••••" type="password" inputmode="numeric" pattern="[0-9]*"/>
           <button id="toggle-pass" class="absolute right-4 flex items-center justify-center text-slate-500 hover:text-slate-300 transition-colors" type="button">
             <span class="material-symbols-outlined">visibility</span>
           </button>
@@ -206,7 +206,7 @@ export function renderLogin(container) {
         <label class="block text-sm font-medium text-slate-300 ml-1">Create PIN</label>
         <div class="group relative flex w-full items-center transition-all">
           <div class="absolute left-4 flex items-center justify-center text-slate-500 group-focus-within:text-primary transition-colors"><span class="material-symbols-outlined">lock</span></div>
-          <input id="reg-password" class="h-14 w-full rounded-xl border border-white/10 bg-white/5 pl-12 pr-4 text-slate-100 placeholder-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="Minimum 6 characters" type="password"/>
+          <input id="reg-password" class="h-14 w-full rounded-xl border border-white/10 bg-white/5 pl-12 pr-4 text-slate-100 placeholder-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none" placeholder="Minimum 6 characters" type="password" inputmode="numeric" pattern="[0-9]*"/>
         </div>
       </div>
       <div id="reg-error" class="text-sm text-red-400 text-center hidden"></div>
