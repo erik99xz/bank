@@ -1,0 +1,13 @@
+node_modules/
+node-local/
+node.zip
+.env
+
+# Flutter / Dart
+flutter/.dart_tool/
+flutter/.packages
+flutter/build/
+flutter/windows/flutter/ephemeral/
+
+# Mac / OS
+.DS_Store
