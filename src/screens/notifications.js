@@ -141,6 +141,8 @@ export function renderNotifications(container) {
     container.querySelectorAll('.notif-item').forEach(item => {
       item.addEventListener('click', async () => {
         const id = item.dataset.notifId;
+        const notif = notifications.find(n => n.id === id);
+        
         await api('mark-notification-read', { id });
         item.classList.add('opacity-70');
         item.classList.replace('border-primary/20', 'border-slate-100');
@@ -157,7 +159,140 @@ export function renderNotifications(container) {
             badge.remove();
           }
         }
+
+        if (notif && (notif.type === 'transfer' || notif.type === 'info')) {
+          showTransactionDetail(notif);
+        }
       });
+    });
+  }
+
+  function showTransactionDetail(notif) {
+    // Standardize with the provided HTML but integrate into the app shell
+    const detailOverlay = document.createElement('div');
+    detailOverlay.className = 'fixed inset-0 z-[100] bg-background-light dark:bg-background-dark flex flex-col animate-slide-up';
+    
+    const amount = notif.body.match(/(\d{1,3}(,\d{3})*)/) ? notif.body.match(/(\d{1,3}(,\d{3})*)/)[0] + ' VND' : '500,000 VND';
+    const isOut = !notif.body.includes('+');
+    const timeStr = formatTimeLong(notif.createdAt);
+
+    detailOverlay.innerHTML = `
+<!-- Header / Top App Bar -->
+<header class="notch-safe-top sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center justify-between p-4">
+<button id="btn-close-detail" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight">Chi tiết giao dịch</h1>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">share</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-4 pb-32">
+<!-- Success Status Badge & Amount Summary -->
+<div class="flex flex-col items-center py-8 gap-4">
+<div class="relative">
+<div class="flex size-20 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-4xl font-bold">check_circle</span>
+</div>
+<div class="absolute -bottom-1 -right-1 flex size-8 items-center justify-center rounded-full ${isOut ? 'bg-red-500' : 'bg-emerald-500'} text-white border-4 border-background-dark">
+<span class="material-symbols-outlined text-lg">${isOut ? 'call_made' : 'call_received'}</span>
+</div>
+</div>
+<div class="text-center space-y-1">
+<p class="text-primary font-medium text-sm bg-primary/10 px-3 py-1 rounded-full inline-block">Giao dịch thành công</p>
+<h2 class="text-3xl font-bold tracking-tight pt-2">${isOut ? '-' : '+'} ${amount}</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">${timeStr}</p>
+</div>
+</div>
+<!-- Recipient Information Card -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-700/50 mb-4">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white text-xl font-bold">
+                    ${notif.title.charAt(0)}
+                </div>
+<div class="flex-1">
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">${isOut ? 'Người nhận' : 'Người gửi'}</p>
+<p class="text-lg font-bold">${notif.title}</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Techcombank • **** 8829</p>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Nội dung</p>
+<p class="text-sm font-medium mt-1 italic text-slate-700 dark:text-slate-300">"${notif.body}"</p>
+</div>
+</div>
+<!-- Transaction Details Section -->
+<div class="space-y-4">
+<h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest px-1">Thông tin bổ sung</h3>
+<div class="bg-white dark:bg-slate-800/50 rounded-xl divide-y divide-slate-100 dark:divide-slate-700/50 border border-slate-200 dark:border-slate-700/50">
+<!-- Row: Transaction ID -->
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Mã giao dịch</p>
+<p class="font-medium text-sm">FT${Math.floor(Math.random()*100000000000000)}</p>
+</div>
+<button class="text-primary hover:bg-primary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<!-- Row: Reference Number -->
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Số tham chiếu</p>
+<p class="font-medium text-sm">${Math.floor(Math.random()*1000000)}</p>
+</div>
+<button class="text-primary hover:bg-primary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<!-- Row: Balance After -->
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Số dư sau giao dịch</p>
+<p class="font-medium text-sm">-- VND</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">account_balance_wallet</span>
+</div>
+<!-- Row: Fee -->
+<div class="flex items-center justify-between p-4">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Phí giao dịch</p>
+<p class="font-medium text-sm text-primary">Miễn phí (0 VND)</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">info</span>
+</div>
+</div>
+</div>
+<!-- Security Tip -->
+<div class="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/10 flex gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Giao dịch này đã được xác thực bằng sinh trắc học và bảo mật 2 lớp. NeoBank không bao giờ yêu cầu mã OTP qua điện thoại.
+            </p>
+</div>
+</main>
+<!-- Footer Actions -->
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 notch-safe-bottom">
+<div class="flex gap-3 max-w-lg mx-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+                Lưu biên lai
+            </button>
+<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl bg-primary text-slate-900 font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">history</span>
+                Chuyển lại
+            </button>
+</div>
+</footer>
+    `;
+
+    document.body.appendChild(detailOverlay);
+    detailOverlay.querySelector('#btn-close-detail').addEventListener('click', () => {
+      detailOverlay.classList.remove('animate-slide-up');
+      detailOverlay.classList.add('animate-slide-down');
+      setTimeout(() => detailOverlay.remove(), 300);
     });
   }
 
@@ -173,4 +308,14 @@ function formatTime(iso) {
   if (diff < 86400) return Math.floor(diff / 3600) + ' giờ trước';
   if (diff < 604800) return Math.floor(diff / 86400) + ' ngày trước';
   return d.toLocaleDateString('vi-VN');
+}
+
+function formatTimeLong(iso) {
+  const d = new Date(iso);
+  const day = d.getDate();
+  const month = d.getMonth() + 1;
+  const year = d.getFullYear();
+  const hours = d.getHours().toString().padStart(2, '0');
+  const minutes = d.getMinutes().toString().padStart(2, '0');
+  return `${day} thg ${month}, ${year} lúc ${hours}:${minutes}`;
 }

@@ -292,7 +292,13 @@ export function renderTransfer(container) {
           </div>
           <div class="flex justify-between items-start gap-4">
             <span class="text-slate-400 text-sm shrink-0">Ngân hàng thụ hưởng</span>
-            <span class="text-slate-100 text-sm font-medium text-right" id="bill-recipient-bank-v2"></span>
+            <div class="flex flex-col items-end gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0"><img id="bill-bank-logo" src="" class="w-full h-full object-contain p-0.5"></div>
+                <span class="text-slate-100 text-sm font-medium text-right uppercase" id="bill-recipient-bank-v2"></span>
+              </div>
+              <span class="text-[10px] text-slate-400 text-right" id="bill-recipient-bank-full"></span>
+            </div>
           </div>
           <div class="h-px bg-[#315a68]/50 w-full"></div>
           <div class="flex justify-between items-start gap-4">
@@ -675,7 +681,17 @@ export function renderTransfer(container) {
       container.querySelector('#bill-sender-name').textContent = normalizedSender;
       container.querySelector('#bill-recipient-name-v2').textContent = data.accName.toUpperCase();
       container.querySelector('#bill-recipient-acc').textContent = data.account;
-      container.querySelector('#bill-recipient-bank-v2').textContent = data.bankFull || data.bankName;
+      
+      const bank = banks.find(b => b.code === data.bankCode);
+      if (bank) {
+        container.querySelector('#bill-recipient-bank-v2').textContent = bank.name;
+        container.querySelector('#bill-recipient-bank-full').textContent = bank.full;
+        container.querySelector('#bill-bank-logo').src = bank.logo;
+      } else {
+        container.querySelector('#bill-recipient-bank-v2').textContent = data.bankName;
+        container.querySelector('#bill-recipient-bank-full').textContent = data.bankFull;
+      }
+
       container.querySelector('#bill-note-v2').textContent = data.note || (normalizedSender + ' CHUYEN TIEN');
       
       container.querySelector('#bill-tx-code-v2').textContent = txCode;

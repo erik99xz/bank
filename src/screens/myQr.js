@@ -22,12 +22,14 @@ export function renderMyQr(container) {
     // Mặc định xài tên LƯU GIA BẢO nếu được yêu cầu tĩnh, nhưng ưu tiên tên user để real-time
     const displayName = 'LƯU GIA BẢO'; // Hoặc user.name tuỳ logic, nhưng user y/c "Chủ tài khoản LƯU GIA BẢO"
 
+    container.className = 'screen';
+    container.style.padding = '0';
     container.innerHTML = `
-      <div class="relative flex min-h-[100dvh] w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+      <div class="relative flex screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
         
         <!-- Header / Navigation Bar -->
-        <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800" style="padding-top: env(safe-area-inset-top);">
-          <div class="flex items-center p-4 justify-between max-w-md mx-auto">
+        <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+          <div class="flex items-center p-4 justify-between max-w-md mx-auto notch-safe-top">
             <div id="btn-back" class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer">
               <span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
             </div>
@@ -50,7 +52,7 @@ export function renderMyQr(container) {
               
               <!-- QR Code Display -->
               <div class="w-full aspect-square bg-white p-2 rounded-xl shadow-inner mb-6 flex items-center justify-center relative group">
-                <div class="w-full h-full bg-center bg-no-repeat bg-contain" style='background-image: url("./qr.png")'></div>
+                <div class="w-full h-full bg-center bg-no-repeat bg-contain" style='background-image: url("qr.png")'></div>
                 <div class="absolute inset-0 flex items-center justify-center bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl cursor-pointer">
                   <span class="material-symbols-outlined text-primary text-4xl">zoom_in</span>
                 </div>
