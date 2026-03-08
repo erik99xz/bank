@@ -250,7 +250,19 @@ body {
   align-items: center;
   justify-content: space-around;
   z-index: 1000;
-  transition: var(--transition);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+/* Hide bottom nav when keyboard is active to prevent displacement */
+.keyboard-visible .bottom-nav {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Adjust screen content padding when keyboard is visible */
+.keyboard-visible .screen-content {
+  padding-bottom: env(safe-area-inset-bottom, 20px) !important;
 }
 
 .nav-item {

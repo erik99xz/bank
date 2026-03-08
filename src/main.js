@@ -91,6 +91,22 @@ function initMobileGestures() {
       // e.preventDefault(); 
     }
   });
+
+  // ── Keyboard Visibility Detection ────────────────────
+  // When an input is focused, the mobile keyboard usually appears.
+  // This causes fixed elements to jump or be displaced.
+  // We hide the bottom nav to maintain a "stable and locked" UI.
+  window.addEventListener('focusin', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+      document.body.classList.add('keyboard-visible');
+    }
+  });
+
+  window.addEventListener('focusout', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+      document.body.classList.remove('keyboard-visible');
+    }
+  });
 }
 
 // ── Boot ───────────────────────────────────────────────
