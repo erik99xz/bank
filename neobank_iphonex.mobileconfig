@@ -2235,11 +2235,11 @@ tIF0gnnJKaqb+nnOFFm9RaPB1n2ImMW88qD55ePj4/8DxusYY6oj6uQAAAAASUVORK5CYII=
 			<key>PayloadDisplayName</key>
 			<string>Web Clip (NeoBank)</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.FA8D1EDF-6D72-4764-B52E-B96702B5C68D</string>
+			<string>com.apple.webClip.managed.0124D97F-2E8F-43E1-AF3F-14E5033A1971</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>FA8D1EDF-6D72-4764-B52E-B96702B5C68D</string>
+			<string>0124D97F-2E8F-43E1-AF3F-14E5033A1971</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
@@ -2263,7 +2263,7 @@ tIF0gnnJKaqb+nnOFFm9RaPB1n2ImMW88qD55ePj4/8DxusYY6oj6uQAAAAASUVORK5CYII=
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>3A81402C-82C5-4972-839A-A1A21818C263</string>
+	<string>BF770238-9A12-4BF3-AA09-0B9DBA474093</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>

@@ -9,7 +9,7 @@ export function renderBottomNav() {
   nav.id = 'bottom-nav';
   nav.className = 'fixed bottom-0 left-0 right-0 bg-background-dark/95 backdrop-blur-xl border-t border-slate-800 notch-safe-bottom z-30';
   nav.innerHTML = `
-    <div class="grid grid-cols-5 items-center pt-3 pb-4 px-2">
+    <div class="grid grid-cols-5 items-center pt-2 pb-1 px-2">
       <a class="nav-link flex flex-col items-center justify-center gap-1" href="#dashboard" data-route="dashboard">
         <span class="material-symbols-outlined nav-icon">home</span>
         <span class="text-[10px] font-bold uppercase tracking-widest nav-label">Trang chủ</span>
