@@ -92,7 +92,7 @@ export function renderDashboard(container, state = null) {
     </div>
   </header>
 
-  <main class="flex-1 px-5 pb-28">
+  <main class="flex-1 px-5 pb-28 stagger">
     <!-- Balance Card -->
     <section class="mt-6">
       <div class="glass-card rounded-xl p-6 relative overflow-hidden">
@@ -184,7 +184,7 @@ export function renderDashboard(container, state = null) {
         <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Giao dịch gần đây</h3>
         <a class="text-sm font-semibold text-primary" href="#history">Xem tất cả</a>
       </div>
-      <div class="space-y-4" id="tx-list">
+      <div class="space-y-4 stagger" id="tx-list">
         ${transactions.slice(0, 5).map(tx => {
           const meta = txMeta[tx.type] || txMeta.transfer;
           const isIncoming = tx.direction === 'in';

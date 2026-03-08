@@ -12,7 +12,7 @@ export function renderCards(container) {
   let flippedId = null;
 
   async function load() {
-    container.innerHTML = `<div class="screen-content"><div class="page-header"><h1 class="page-title">Thẻ của tôi</h1></div>${skeletonCard()}${skeletonCard()}</div>`;
+    container.innerHTML = `<div class="screen-content stagger"><div class="page-header"><h1 class="page-title">Thẻ của tôi</h1></div>${skeletonCard()}${skeletonCard()}</div>`;
     const res = await api('cards');
     if (!res.ok) { showToast(res.error, 'error'); return; }
     cards = res.cards;
@@ -23,7 +23,7 @@ export function renderCards(container) {
     container.className = 'screen';
     container.style.padding = '0';
     container.innerHTML = `
-      <div class="screen-content">
+      <div class="screen-content stagger">
         <div class="page-header animate-fade-in">
           <button class="back-btn" id="btn-back">←</button>
           <h1 class="page-title">Thẻ của tôi</h1>

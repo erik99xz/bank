@@ -18,30 +18,15 @@ export function renderNotifications(container) {
         <button id="btn-back-loading" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors">
           <span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back_ios_new</span>
         </button>
-        <div class="flex items-center gap-2">
-          <h1 class="text-2xl font-bold tracking-tight">Thông báo</h1>
+        <div class="screen-content stagger">
+        <div class="page-header"><h1 class="page-title">Thông báo</h1></div>
         </div>
       </div>
     </div>
   </header>
   <main class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
     <!-- Skeleton Loader -->
-    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-100 dark:bg-card-dark opacity-40">
-      <div class="size-12 rounded-lg skeleton shrink-0"></div>
-      <div class="flex-1 space-y-2">
-        <div class="h-4 w-1/2 skeleton rounded"></div>
-        <div class="h-3 w-full skeleton rounded"></div>
-        <div class="h-3 w-1/4 skeleton rounded"></div>
-      </div>
-    </div>
-    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-100 dark:bg-card-dark opacity-40">
-      <div class="size-12 rounded-lg skeleton shrink-0"></div>
-      <div class="flex-1 space-y-2">
-        <div class="h-4 w-1/2 skeleton rounded"></div>
-        <div class="h-3 w-full skeleton rounded"></div>
-        <div class="h-3 w-1/4 skeleton rounded"></div>
-      </div>
-    </div>
+    ${skeletonRows(8)}
   </main>
 </div>`;
     container.querySelector('#btn-back-loading')?.addEventListener('click', () => navigate('dashboard'));
@@ -61,8 +46,8 @@ export function renderNotifications(container) {
         <button id="btn-back" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors">
           <span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back_ios_new</span>
         </button>
-        <div class="flex items-center gap-2">
-          <h1 class="text-2xl font-bold tracking-tight">Thông báo</h1>
+        <div class="screen-content stagger">
+        <div class="page-header"><h1 class="page-title">Thông báo</h1></div>
           ${notifications.filter(n => !n.read).length > 0 ? `
           <span class="flex items-center justify-center bg-primary text-white text-[10px] font-bold h-5 min-w-5 px-1.5 rounded-full neon-glow">
             ${notifications.filter(n => !n.read).length}
@@ -88,7 +73,7 @@ export function renderNotifications(container) {
   </header>
 
   <!-- Notification List -->
-  <main class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+  <main class="flex-1 overflow-y-auto px-4 py-6 space-y-4 stagger">
     ${notifications.length === 0 ? '<p class="text-sm text-slate-500 text-center" style="padding:40px 0">Không có thông báo</p>' : ''}
     
     ${notifications.map((n, i) => {
@@ -116,7 +101,7 @@ export function renderNotifications(container) {
         <div class="size-12 flex items-center justify-center rounded-lg ${bgColor} ${iconColor} shrink-0">
           <span class="material-symbols-outlined text-[28px]">${icon}</span>
         </div>
-        <div class="flex-1">
+        <div class="screen-content stagger flex-1">
           <div class="flex justify-between items-start mb-1">
             <h3 class="font-bold text-slate-900 dark:text-slate-100">${n.title}</h3>
             <span class="text-[11px] font-medium text-slate-400 whitespace-nowrap">${formatTime(n.createdAt)}</span>

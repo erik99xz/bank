@@ -42,7 +42,7 @@ export function renderProfile(container) {
 </div>
 </header>
 <!-- Main Content -->
-<main class="flex-1 w-full pb-32">
+<main class="flex-1 w-full pb-32 stagger">
 <!-- User Info Section -->
 <section class="flex flex-col items-center py-8 px-4">
 <div class="relative group">

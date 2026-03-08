@@ -41,12 +41,12 @@ function handleRoute() {
   currentRoute = hash;
 
   // Animate out old content
-  appContent.style.animation = `${direction} 0.35s cubic-bezier(0.4, 0, 0.2, 1)`;
+  appContent.style.animation = `${direction} 0.45s var(--transition-spring)`;
   appContent.innerHTML = '';
 
   // Render new screen
   const screen = document.createElement('div');
-  screen.className = 'screen';
+  screen.className = 'screen animate-fade-in';
   screen.id = 'screen-' + hash;
   renderFn(screen, currentState);
   appContent.appendChild(screen);
@@ -55,7 +55,7 @@ function handleRoute() {
   currentState = null;
 
   // Reset animation
-  setTimeout(() => { appContent.style.animation = ''; }, 350);
+  setTimeout(() => { appContent.style.animation = ''; }, 450);
 
   // Update nav
   updateNav(hash);

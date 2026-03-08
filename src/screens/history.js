@@ -17,7 +17,7 @@ export function renderHistory(container) {
 
   async function load() {
     container.innerHTML = `
-      <div class="screen-content">
+      <div class="screen-content stagger">
         <div class="page-header"><h1 class="page-title">Lịch sử giao dịch</h1></div>
         ${skeletonRows(6)}
       </div>`;
@@ -82,7 +82,7 @@ export function renderHistory(container) {
         </header>
 
         <!-- Transaction List -->
-        <main class="flex-1 overflow-y-auto px-4 py-4 space-y-6 pb-24">
+        <main class="flex-1 overflow-y-auto px-4 py-4 space-y-6 pb-24 stagger">
           ${Object.keys(grouped).length === 0 ? '<p class="text-sm text-slate-500 text-center py-10">Không có giao dịch nào</p>' : ''}
           ${Object.entries(grouped).map(([date, txs]) => `
           <div>
@@ -178,7 +178,7 @@ export function renderHistory(container) {
 </button>
 </div>
 </header>
-<main class="flex-1 overflow-y-auto px-4 pb-32">
+<main class="flex-1 overflow-y-auto px-4 pb-32 stagger">
 <!-- Success Status Badge & Amount Summary -->
 <div class="flex flex-col items-center py-8 gap-4">
 <div class="relative">

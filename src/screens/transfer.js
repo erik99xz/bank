@@ -110,7 +110,7 @@ export function renderTransfer(container) {
     </button>
   </header>
 
-  <main class="flex-1 px-4 pb-32">
+  <main class="flex-1 px-4 pb-32 stagger">
 
 
     <!-- Transfer Form -->
@@ -218,7 +218,7 @@ export function renderTransfer(container) {
         <p class="text-[12px] text-slate-500 dark:text-slate-400 font-medium">Nhập mã PIN Smart OTP để xác nhận</p>
       </div>
     </header>
-    <main class="flex-1 px-4 space-y-6">
+    <main class="flex-1 px-4 space-y-6 stagger">
       <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-lg p-3 shadow-sm">
         <div class="space-y-2 text-xs" id="otp-details"></div>
       </div>
