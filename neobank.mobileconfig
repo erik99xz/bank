@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -18,11 +18,11 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.1D7294F1-8E1F-46AA-9A33-D91299C153A7</string>
+			<string>com.apple.webClip.managed.746B6BE8-3406-4178-96C0-9D99E1591B75</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>1D7294F1-8E1F-46AA-9A33-D91299C153A7</string>
+			<string>746B6BE8-3406-4178-96C0-9D99E1591B75</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
@@ -34,13 +34,13 @@
 	<key>PayloadDisplayName</key>
 	<string>NeoBank Web App</string>
 	<key>PayloadIdentifier</key>
-	<string>com.neobank.webapp.B5368A95-0E57-4F03-8A9B-A2F71B024985</string>
+	<string>com.neobank.webapp.E3EC4270-4A36-455A-91E4-72CF859650D9</string>
 	<key>PayloadRemovalDisallowed</key>
 	<false/>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>B5368A95-0E57-4F03-8A9B-A2F71B024985</string>
+	<string>E3EC4270-4A36-455A-91E4-72CF859650D9</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
