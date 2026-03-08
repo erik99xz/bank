@@ -17,7 +17,9 @@ export function renderPriority(container) {
   }
 
   function render(data) {
-    const { isPriority, account, benefits, user } = data;
+    const { user } = data;
+    container.className = 'screen';
+    container.style.padding = '0';
     container.innerHTML = `
       <style>
         .gold-gradient {
@@ -45,7 +47,7 @@ export function renderPriority(container) {
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
         }
       </style>
-      <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden animate-fade-in">
+      <div class="relative flex h-auto screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden animate-fade-in">
         <!-- Header -->
         <div class="flex items-center p-4 justify-between notch-safe-top">
           <button id="btn-back" class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start pointer">

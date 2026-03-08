@@ -25,7 +25,7 @@ export function renderLogin(container) {
   // ─── LOGIN ────────────────────────────────────────────
   function renderLoginView() {
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
+<div class="relative flex screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
   <!-- Background Decorative Elements -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -top-[10%] -left-[10%] h-[40%] w-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
@@ -167,7 +167,7 @@ export function renderLogin(container) {
   // ─── REGISTER ─────────────────────────────────────────
   function renderRegisterView() {
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
+<div class="relative flex screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -top-[10%] -left-[10%] h-[40%] w-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
     <div class="absolute -bottom-[10%] -right-[10%] h-[40%] w-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
@@ -248,7 +248,7 @@ export function renderLogin(container) {
   // ─── OTP ──────────────────────────────────────────────
   function renderOtpView() {
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
+<div class="relative flex screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -top-[10%] -left-[10%] h-[40%] w-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
     <div class="absolute -bottom-[10%] -right-[10%] h-[40%] w-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
@@ -307,7 +307,7 @@ export function renderLogin(container) {
   // ─── FORGOT PASSWORD ──────────────────────────────────
   function renderForgotView() {
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
+<div class="relative flex screen w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-background-dark via-[#081215] to-black px-6 py-12 font-display text-slate-100 antialiased">
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -top-[10%] -left-[10%] h-[40%] w-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
     <div class="absolute -bottom-[10%] -right-[10%] h-[40%] w-[60%] rounded-full bg-primary/5 blur-[120px]"></div>

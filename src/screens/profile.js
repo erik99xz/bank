@@ -20,9 +20,11 @@ export function renderProfile(container) {
   }
 
   function render() {
+    container.className = 'screen';
+    container.style.padding = '0';
     const { user, account } = profile;
     container.innerHTML = `
-<div class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col relative max-w-md mx-auto shadow-2xl">
+<div class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 screen flex flex-col relative max-w-md mx-auto shadow-2xl">
 <!-- Header -->
 <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
 <div class="flex items-center justify-between p-4 w-full notch-safe-top">

@@ -152,15 +152,73 @@ body {
 .screen {
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   min-height: 100dvh;
   overflow-x: hidden;
   scrollbar-width: none;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
 }
 .screen::-webkit-scrollbar { display: none; }
 
 .screen-content {
+  flex: 1;
   padding: 16px 20px;
+  padding-bottom: calc(var(--nav-height) + 20px);
 }
+
+/* ── Device Simulator Shell (Desktop Only) ────────── */
+@media (min-width: 1024px) {
+  body {
+    background: #05080a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  #app {
+    position: relative;
+    width: 393px; /* iPhone 15 Pro width */
+    height: 852px; /* iPhone 15 Pro height */
+    border-radius: 54px;
+    border: 12px solid #1c1c1e;
+    box-shadow: 0 0 0 2px #3a3a3c, 0 30px 60px rgba(0,0,0,0.8);
+    overflow: hidden;
+    margin: auto;
+    max-width: none;
+    min-height: auto;
+  }
+
+  /* Notch / Dynamic Island simulation */
+  #app::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 36px;
+    background: black;
+    border-radius: 20px;
+    z-index: 2000;
+  }
+
+  .status-bar {
+    max-width: 393px;
+    left: 0;
+    transform: none;
+    padding-top: 20px;
+    height: 60px;
+  }
+}
+
+/* Device sizes */
+.device-iphone-15-pm #app { width: 430px; height: 932px; }
+.device-iphone-13-mini #app { width: 375px; height: 812px; }
+.device-iphone-8-plus #app { width: 414px; height: 736px; border-radius: 0; }
+.device-iphone-8-plus #app::after { display: none; }
 
 /* ── Status Bar (simulated) ────────────────────────── */
 .status-bar {

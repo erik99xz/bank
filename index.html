@@ -41,8 +41,41 @@
   </script>
   <link rel="stylesheet" href="src/styles/index.css">
 </head>
-<body class="dark">
+<body class="dark animate-fade-in">
+  
+  <!-- Device Selector (Desktop Only) -->
+  <div class="fixed top-6 left-6 z-[3000] hidden lg:flex flex-col gap-3 bg-card/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl">
+    <h3 class="text-xs font-bold uppercase tracking-widest opacity-50 mb-1">Simulate Device</h3>
+    <button onclick="document.body.className='dark animate-fade-in'" class="text-left text-sm font-semibold hover:text-primary transition-colors">iPhone 15 Pro (Default)</button>
+    <button onclick="document.body.className='dark device-iphone-15-pm animate-fade-in'" class="text-left text-sm font-semibold hover:text-primary transition-colors">iPhone 15 Pro Max</button>
+    <button onclick="document.body.className='dark device-iphone-13-mini animate-fade-in'" class="text-left text-sm font-semibold hover:text-primary transition-colors">iPhone 13 Mini</button>
+    <button onclick="document.body.className='dark device-iphone-8-plus animate-fade-in'" class="text-left text-sm font-semibold hover:text-primary transition-colors">iPhone 8 Plus</button>
+  </div>
+
+  <!-- Simulated Status Bar -->
+  <div id="status-bar" class="status-bar">
+    <div class="time" id="status-time">09:41</div>
+    <div class="icons">
+      <span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span>
+      <span class="material-symbols-outlined text-[14px]">wifi</span>
+      <span class="material-symbols-outlined text-[14px]">battery_very_low</span>
+    </div>
+  </div>
+
   <div id="app"></div>
+  
+  <script>
+    // Update simulated time
+    function updateSimulatedTime() {
+      const now = new Date();
+      const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+      const timeEl = document.getElementById('status-time');
+      if (timeEl) timeEl.textContent = timeStr;
+    }
+    setInterval(updateSimulatedTime, 1000);
+    updateSimulatedTime();
+  </script>
+
   <script type="module" src="src/main.js"></script>
 </body>
 </html>

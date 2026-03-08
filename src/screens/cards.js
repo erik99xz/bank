@@ -20,6 +20,8 @@ export function renderCards(container) {
   }
 
   function render() {
+    container.className = 'screen';
+    container.style.padding = '0';
     container.innerHTML = `
       <div class="screen-content">
         <div class="page-header animate-fade-in">

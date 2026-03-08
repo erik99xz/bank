@@ -51,7 +51,7 @@ export function renderHistory(container) {
     }
 
     container.innerHTML = `
-      <div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+      <div class="relative flex screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
         <!-- Header -->
         <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
           <div class="flex items-center p-4 justify-between notch-safe-top">
@@ -165,7 +165,7 @@ export function renderHistory(container) {
     
     detailScreen.innerHTML = `
 <!-- Header / Top App Bar -->
-<header class="notch-safe sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<header class="notch-safe-top sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between p-4">
 <button id="btn-close-tx-detail" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <span class="material-symbols-outlined text-2xl">arrow_back</span>

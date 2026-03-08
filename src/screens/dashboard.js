@@ -24,7 +24,7 @@ export function renderDashboard(container, state = null) {
     container.className = 'screen';
     container.style.padding = '0';
     container.innerHTML = `
-<div class="min-h-screen bg-background-dark font-display text-slate-100">
+<div class="screen bg-background-dark font-display text-slate-100">
   <header class="sticky top-0 z-20 bg-background-dark/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-slate-800 animate-pulse"></div>
@@ -72,7 +72,7 @@ export function renderDashboard(container, state = null) {
     }).join('');
 
     container.innerHTML = `
-<div class="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 flex flex-col font-display">
+<div class="screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 flex flex-col font-display">
   <!-- Header -->
   <header class="notch-safe-top sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
     <div class="flex items-center gap-2">

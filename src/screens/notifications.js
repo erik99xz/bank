@@ -10,8 +10,8 @@ import { skeletonRows } from '../components/skeleton.js';
 export function renderNotifications(container) {
   async function load() {
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden pb-20">
-  <header class="notch-safe pt-4 px-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="relative flex screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden pb-20">
+  <header class="notch-safe-top pt-4 px-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
     <div class="flex items-center justify-between pb-4">
       <div class="flex items-center gap-3">
         <button id="btn-back-loading" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors">
@@ -52,9 +52,9 @@ export function renderNotifications(container) {
   function render(notifications) {
 
     container.innerHTML = `
-<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden pb-20">
+<div class="relative flex screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden pb-20">
   <!-- Header Section -->
-  <header class="notch-safe pt-4 px-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+  <header class="notch-safe-top pt-4 px-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
     <div class="flex items-center justify-between pb-4">
       <div class="flex items-center gap-3">
         <button id="btn-back" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-primary/10 transition-colors">

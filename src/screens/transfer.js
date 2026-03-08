@@ -97,9 +97,9 @@ export function renderTransfer(container) {
     let defaultNote = user ? removeVietnameseTones(user.name).toUpperCase() + ' chuyen tien' : 'Chuyen tien NeoBank';
 
     container.innerHTML = `
-<div class="min-h-screen bg-background-dark font-display text-slate-100 flex flex-col">
+<div class="screen font-display text-slate-100 flex flex-col">
   <!-- Header -->
-  <header class="flex items-center justify-between p-4 sticky top-0 bg-background-dark/80 backdrop-blur-md z-10">
+  <header class="flex items-center justify-between p-4 sticky top-0 bg-background-dark/80 backdrop-blur-md z-20 notch-safe-top">
     <button id="btn-back" class="p-2 rounded-full hover:bg-slate-800 transition-colors">
       <span class="material-symbols-outlined block">arrow_back</span>
     </button>
@@ -200,8 +200,8 @@ export function renderTransfer(container) {
 </div>
 
 <!-- Smart OTP Screen -->
-<div id="otp-screen" class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex-col overflow-y-auto" style="display:none">
-  <div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto overflow-x-hidden">
+<div id="otp-screen" class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col overflow-y-auto" style="display:none">
+  <div class="relative flex screen w-full flex-col max-w-md mx-auto overflow-x-hidden">
     <header class="pt-12 pb-6 px-4">
       <div class="flex items-center justify-between mb-6">
         <button id="btn-cancel-otp" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
@@ -249,7 +249,7 @@ export function renderTransfer(container) {
 
 <!-- Success Bill Screen -->
 <div id="bill-screen" class="fixed inset-0 z-[70] bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col overflow-y-auto" style="display:none">
-  <div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto overflow-x-hidden">
+  <div class="relative flex screen w-full max-w-md mx-auto overflow-x-hidden pb-10">
     <!-- Header / Notch Space -->
     <div class="safe-top bg-background-dark h-8"></div>
     <!-- Top Navigation -->
