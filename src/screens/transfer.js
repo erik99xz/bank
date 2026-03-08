@@ -413,7 +413,9 @@ export function renderTransfer(container) {
     // PIN Inputs
     const pinInputs = container.querySelectorAll('.pin-input');
     pinInputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
+      input.addEventListener('input', (e) => {
+        // Only allow numbers
+        input.value = input.value.replace(/[^0-9]/g, '');
         if (input.value.length === 1 && index < pinInputs.length - 1) {
           pinInputs[index + 1].focus();
         }

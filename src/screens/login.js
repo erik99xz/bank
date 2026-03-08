@@ -283,7 +283,10 @@ export function renderLogin(container) {
 
     const otpInputs = container.querySelectorAll('#otp-group input');
     otpInputs.forEach((inp, i) => {
-      inp.addEventListener('input', () => { if (inp.value.length === 1 && i < 5) otpInputs[i + 1].focus(); });
+      inp.addEventListener('input', () => {
+        inp.value = inp.value.replace(/[^0-9]/g, '');
+        if (inp.value.length === 1 && i < 5) otpInputs[i + 1].focus(); 
+      });
       inp.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && !inp.value && i > 0) otpInputs[i - 1].focus(); });
     });
 
