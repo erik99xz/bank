@@ -88,6 +88,16 @@ ${user.priority ? `
 </div>
 <span class="material-symbols-outlined text-slate-400">chevron_right</span>
 </a>
+<a id="menu-my-qr" class="cursor-pointer flex items-center gap-4 p-4 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors border-b border-slate-200 dark:border-slate-800">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div class="flex-1">
+<p class="font-semibold">QR Cá Nhân</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Mã QR nhận tiền của bạn</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</a>
 <a id="menu-priority" class="cursor-pointer flex items-center gap-4 p-4 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">star</span>
@@ -163,6 +173,8 @@ ${user.priority ? `
     container.querySelector('#menu-cards').addEventListener('click', () => navigate('cards'));
     container.querySelector('#menu-priority').addEventListener('click', () => navigate('priority'));
     container.querySelector('#menu-password').addEventListener('click', () => showPasswordModal());
+
+    container.querySelector('#menu-my-qr').addEventListener('click', () => navigate('myQr'));
 
     container.querySelector('#theme-toggle').addEventListener('click', async () => {
       const res = await api('toggle-theme');

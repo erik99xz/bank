@@ -16,6 +16,7 @@ import { renderCards } from './screens/cards.js';
 import { renderProfile } from './screens/profile.js';
 import { renderPriority } from './screens/priority.js';
 import { renderChangePin } from './screens/changePin.js';
+import { renderMyQr } from './screens/myQr.js';
 import { renderNotifications } from './screens/notifications.js';
 import { renderAdmin } from './admin/admin.js';
 
@@ -29,6 +30,7 @@ registerRoute('cards', renderCards);
 registerRoute('profile', renderProfile);
 registerRoute('priority', renderPriority);
 registerRoute('changePin', renderChangePin);
+registerRoute('myQr', renderMyQr);
 registerRoute('notifications', renderNotifications);
 registerRoute('admin', renderAdmin);
 
