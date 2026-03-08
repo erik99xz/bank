@@ -10,25 +10,25 @@ export function renderBottomNav() {
   nav.className = 'fixed bottom-0 left-0 right-0 bg-background-dark/95 backdrop-blur-xl border-t border-slate-800 notch-safe-bottom z-30';
   nav.innerHTML = `
     <div class="flex items-center justify-between px-6 py-3">
-      <a class="nav-link flex flex-col items-center gap-1" href="#dashboard" data-route="dashboard">
+      <a class="nav-link flex flex-col items-center justify-center gap-1 w-16" href="#dashboard" data-route="dashboard">
         <span class="material-symbols-outlined nav-icon">home</span>
         <span class="text-[10px] font-bold uppercase tracking-widest nav-label">Trang chủ</span>
       </a>
-      <a class="nav-link flex flex-col items-center gap-1" href="#transfer" data-route="transfer">
+      <a class="nav-link flex flex-col items-center justify-center gap-1 w-16" href="#transfer" data-route="transfer">
         <span class="material-symbols-outlined nav-icon">account_balance_wallet</span>
         <span class="text-[10px] font-bold uppercase tracking-widest nav-label">Ví</span>
       </a>
-      <div class="relative -top-8">
+      <div class="relative -top-8 flex justify-center items-center w-16">
         <button id="nav-qr-btn" class="w-16 h-16 rounded-full bg-primary shadow-[0_8px_24px_rgba(13,185,242,0.4)] flex items-center justify-center border-4 border-background-dark active:scale-90 transition-transform">
           <span class="material-symbols-outlined text-background-dark text-3xl font-bold">qr_code_scanner</span>
         </button>
-        <div class="absolute inset-0 rounded-full bg-primary/20 blur-xl -z-10"></div>
+        <div class="absolute w-16 h-16 rounded-full bg-primary/20 blur-xl -z-10"></div>
       </div>
-      <a class="nav-link flex flex-col items-center gap-1" href="#notifications" data-route="notifications">
+      <a class="nav-link flex flex-col items-center justify-center gap-1 w-16" href="#notifications" data-route="notifications">
         <span class="material-symbols-outlined nav-icon">notifications</span>
         <span class="text-[10px] font-bold uppercase tracking-widest nav-label">Thông báo</span>
       </a>
-      <a class="nav-link flex flex-col items-center gap-1" href="#profile" data-route="profile">
+      <a class="nav-link flex flex-col items-center justify-center gap-1 w-16" href="#profile" data-route="profile">
         <span class="material-symbols-outlined nav-icon">person</span>
         <span class="text-[10px] font-bold uppercase tracking-widest nav-label">Cá nhân</span>
       </a>
