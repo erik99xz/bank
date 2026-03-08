@@ -46,7 +46,7 @@ export function renderChangePin(container) {
                 <p class="text-xl font-mono tracking-widest text-slate-100">•••• •••• •••• 8888</p>
                 <div class="flex justify-between items-end mt-2">
                   <div class="flex flex-col">
-                    <span class="text-[8px] text-slate-500 uppercase">Card Holder</span>
+                    <img src="./logo.png" alt="Card Holder Logo" class="h-[8px] object-contain mb-1 opacity-60 filter grayscale brightness-200" style="margin-left:-2px"/>
                     <span class="text-sm font-bold text-slate-100">${userName}</span>
                   </div>
                   <div class="flex flex-col items-end">

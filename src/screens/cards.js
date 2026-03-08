@@ -54,7 +54,7 @@ export function renderCards(container) {
                 <!-- Card Bottom View -->
                 <div class="flex justify-between items-end z-10">
                   <div class="flex flex-col">
-                    <p class="text-[9px] uppercase tracking-widest text-[#D4AF37]/60 font-semibold mb-1">Card Holder</p>
+                    <img src="./logo.png" alt="Card Holder Logo" class="h-[10px] object-contain mb-1 opacity-60 filter grayscale brightness-200" style="margin-left:-2px"/>
                     <p class="text-slate-100 text-sm md:text-base font-bold tracking-wide">${card.cardHolder}</p>
                   </div>
                   <div class="flex flex-col items-end">

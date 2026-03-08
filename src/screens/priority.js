@@ -85,7 +85,7 @@ export function renderPriority(container) {
             
             <div class="flex justify-between items-end z-10">
               <div class="flex flex-col">
-                <p class="text-[10px] uppercase tracking-widest text-[#D4AF37]/60 font-semibold mb-1">Card Holder</p>
+                <img src="./logo.png" alt="Card Holder Logo" class="h-[10px] object-contain mb-1 opacity-60 filter grayscale brightness-200" style="margin-left:-2px"/>
                 <p class="text-slate-100 text-base font-bold tracking-wide">${user.name.toUpperCase()}</p>
               </div>
               <div class="flex flex-col items-end">
@@ -172,8 +172,25 @@ export function renderPriority(container) {
             <span class="material-symbols-outlined text-slate-500 ml-auto">chevron_right</span>
           </div>
         </div>
-        
-        <!-- Spacer for content -->
+
+        <!-- Lifestyle Curations Section -->
+    <section class="px-6 flex flex-col gap-4 animate-fade-in" style="animation-delay: 0.3s">
+      <h3 class="text-lg font-bold text-slate-100">Lifestyle Curations</h3>
+      <div class="grid grid-cols-1 gap-4">
+        <div class="relative rounded-xl aspect-[16/9] overflow-hidden group border border-slate-800">
+          <!-- Real image provided by User -->
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCKKBtiOHxbmHBA9HjY3REZW-mByWmWAjpKnI3rUwq8vggPNmWaVeiBJUSAm5q9AVFv5HUjgCtqrYpDjCH-JVafOeReYFoxE6jEwcNTtmdGI2LCYG3iBv0KKjCE9Jc4kCBwL-f6th_fTFPRA0VyhKcW-UOnvotJBwjAmk6hyexOGqS82os7rF7cTWCKEXRSnI8XC1dMcVKp4iJoMwZWU7fDWggGb9Ra7uNYnIXG-ZOjJHxYdCemxw1AA_psCG1FN-QpbXdDCKbkTRQ')"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+            <div class="flex flex-col">
+              <span class="text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest">Gastronomy</span>
+              <h4 class="text-slate-100 font-bold text-lg leading-tight">Elite Dining Reservations</h4>
+            </div>
+            <span class="material-symbols-outlined text-slate-100 bg-[#D4AF37]/20 p-2 rounded-full border border-[#D4AF37]/30 backdrop-blur-sm">arrow_forward</span>
+          </div>
+        </div>
+      </div>
+    </section>    <!-- Spacer for content -->
         <div style="height: 100px;"></div>
       </div>`;
 
