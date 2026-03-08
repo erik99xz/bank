@@ -18,11 +18,11 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.746B6BE8-3406-4178-96C0-9D99E1591B75</string>
+			<string>com.apple.webClip.managed.8C2E80BA-AF51-46AE-B013-F42D0626BEF3</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>746B6BE8-3406-4178-96C0-9D99E1591B75</string>
+			<string>8C2E80BA-AF51-46AE-B013-F42D0626BEF3</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
@@ -34,13 +34,13 @@
 	<key>PayloadDisplayName</key>
 	<string>NeoBank Web App</string>
 	<key>PayloadIdentifier</key>
-	<string>com.neobank.webapp.E3EC4270-4A36-455A-91E4-72CF859650D9</string>
+	<string>com.neobank.webapp.10B43A40-EDCB-424E-8A45-714E35A6D2F7</string>
 	<key>PayloadRemovalDisallowed</key>
 	<false/>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>E3EC4270-4A36-455A-91E4-72CF859650D9</string>
+	<string>10B43A40-EDCB-424E-8A45-714E35A6D2F7</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
