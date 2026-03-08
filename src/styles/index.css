@@ -88,8 +88,8 @@
   border: 1px solid rgba(13, 185, 242, 0.2);
 }
 
-.notch-safe-top { padding-top: env(safe-area-inset-top); }
-.notch-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.notch-safe-top, .notch-safe { padding-top: env(safe-area-inset-top); }
+.notch-safe-bottom, .bottom-safe { padding-bottom: env(safe-area-inset-bottom); }
 
 /* Material Symbols filled variant */
 .font-fill { font-variation-settings: 'FILL' 1; }

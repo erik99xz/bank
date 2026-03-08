@@ -165,7 +165,7 @@ export function renderHistory(container) {
     
     detailScreen.innerHTML = `
 <!-- Header / Top App Bar -->
-<header class="notch-safe-top sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<header class="notch-safe sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between p-4">
 <button id="btn-close-tx-detail" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <span class="material-symbols-outlined text-2xl">arrow_back</span>

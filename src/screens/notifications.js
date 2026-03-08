@@ -178,7 +178,7 @@ export function renderNotifications(container) {
 
     detailOverlay.innerHTML = `
 <!-- Header / Top App Bar -->
-<header class="notch-safe-top sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<header class="notch-safe sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between p-4">
 <button id="btn-close-detail" class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
 <span class="material-symbols-outlined text-2xl">arrow_back</span>
@@ -202,14 +202,14 @@ export function renderNotifications(container) {
 </div>
 <div class="text-center space-y-1">
 <p class="text-primary font-medium text-sm bg-primary/10 px-3 py-1 rounded-full inline-block">Giao dịch thành công</p>
-<h2 class="text-3xl font-bold tracking-tight pt-2">${isOut ? '-' : '+'} ${amount}</h2>
+<h2 class="text-3xl font-bold tracking-tight pt-2 ${isOut ? '' : 'text-emerald-500'}">${isOut ? '-' : '+'} ${amount}</h2>
 <p class="text-slate-500 dark:text-slate-400 text-sm">${timeStr}</p>
 </div>
 </div>
 <!-- Recipient Information Card -->
 <div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-700/50 mb-4">
 <div class="flex items-center gap-4">
-<div class="size-14 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white text-xl font-bold">
+<div class="size-14 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white text-xl font-bold uppercase">
                     ${notif.title.charAt(0)}
                 </div>
 <div class="flex-1">
@@ -267,14 +267,14 @@ export function renderNotifications(container) {
 </div>
 <!-- Security Tip -->
 <div class="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/10 flex gap-3">
-<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="material-symbols-outlined text-primary shrink-0">verified_user</span>
 <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                 Giao dịch này đã được xác thực bằng sinh trắc học và bảo mật 2 lớp. NeoBank không bao giờ yêu cầu mã OTP qua điện thoại.
             </p>
 </div>
 </main>
 <!-- Footer Actions -->
-<footer class="fixed bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 notch-safe-bottom">
+<footer class="bottom-safe fixed bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800">
 <div class="flex gap-3 max-w-lg mx-auto">
 <button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors">
 <span class="material-symbols-outlined">receipt_long</span>
