@@ -282,7 +282,8 @@ function handleTransactions({ type, search, dateFrom, dateTo } = {}) {
 // ── Cards ──────────────────────────────────────────────
 function handleCards() {
   requireAuth();
-  const cards = DB.cards.filter(c => c.userId === currentUserId);
+  const user = getUserById(currentUserId);
+  const cards = DB.cards.filter(c => c.userId === currentUserId).map(c => ({...c, cardHolder: user.name.toUpperCase()}));
   return { ok: true, cards };
 }
 
@@ -322,6 +323,7 @@ function handlePriorityInfo() {
     ok: true,
     isPriority: user.priority,
     account,
+    user: sanitizeUser(user),
     benefits: [
       { icon: '💎', title: 'Hạn mức chuyển tiền', desc: 'Lên đến 5 tỷ VNĐ/ngày' },
       { icon: '🛡️', title: 'Bảo hiểm giao dịch', desc: 'Bảo vệ 100% giao dịch' },

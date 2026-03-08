@@ -8,6 +8,10 @@ import { showToast } from '../components/toast.js';
 
 export function renderChangePin(container) {
   async function load() {
+    container.innerHTML = `<div class="p-8 text-center text-slate-500">Loading...</div>`;
+    const res = await api('profile');
+    const userName = res.ok ? res.user.name.toUpperCase() : 'NGUYEN VAN A';
+
     container.innerHTML = `
       <div class="relative flex min-h-[100dvh] w-full flex-col overflow-x-hidden max-w-md mx-auto">
         <!-- Top App Bar -->
@@ -43,7 +47,7 @@ export function renderChangePin(container) {
                 <div class="flex justify-between items-end mt-2">
                   <div class="flex flex-col">
                     <span class="text-[8px] text-slate-500 uppercase">Card Holder</span>
-                    <span class="text-sm font-bold text-slate-100">NGUYEN VAN A</span>
+                    <span class="text-sm font-bold text-slate-100">${userName}</span>
                   </div>
                   <div class="flex flex-col items-end">
                     <span class="text-[8px] text-slate-500 uppercase">Expires</span>

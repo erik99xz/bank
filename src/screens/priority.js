@@ -17,7 +17,7 @@ export function renderPriority(container) {
   }
 
   function render(data) {
-    const { isPriority, account, benefits } = data;
+    const { isPriority, account, benefits, user } = data;
     container.innerHTML = `
       <style>
         .gold-gradient {
@@ -86,7 +86,7 @@ export function renderPriority(container) {
             <div class="flex justify-between items-end z-10">
               <div class="flex flex-col">
                 <p class="text-[10px] uppercase tracking-widest text-[#D4AF37]/60 font-semibold mb-1">Card Holder</p>
-                <p class="text-slate-100 text-base font-bold tracking-wide">${account.holderName || 'NGUYEN VAN A'}</p>
+                <p class="text-slate-100 text-base font-bold tracking-wide">${user.name.toUpperCase()}</p>
               </div>
               <div class="flex flex-col items-end">
                 <div class="flex gap-4 mb-2">
